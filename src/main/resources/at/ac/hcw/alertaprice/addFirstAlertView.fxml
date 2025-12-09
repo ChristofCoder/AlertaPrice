@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.hcw.alertaprice.AddFirstAlertController">
+   <children>
+      <Label alignment="CENTER" layoutX="1.0" layoutY="117.0" prefHeight="20.0" prefWidth="600.0" text="Add New Alert">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label fx:id="firstAlertLabel" alignment="CENTER" layoutX="1.0" layoutY="46.0" prefHeight="17.0" prefWidth="600.0" text="Label">
+         <font>
+            <Font size="37.0" />
+         </font></Label>
+      <Label layoutX="90.0" layoutY="175.0" text="Name:" />
+      <Label layoutX="90.0" layoutY="226.0" text="URL:" />
+      <Label layoutX="90.0" layoutY="269.0" text="CSS Selector:" />
+      <TextField fx:id="nameTextField" layoutX="174.0" layoutY="171.0" prefHeight="26.0" prefWidth="352.0" promptText="Produktname, Markt" />
+      <TextField fx:id="urlTextField" layoutX="174.0" layoutY="213.0" prefHeight="26.0" prefWidth="352.0" promptText="https://www.shop.at/product.html" />
+      <TextField fx:id="cssTextField" layoutX="174.0" layoutY="264.0" prefHeight="26.0" prefWidth="352.0" promptText="div.example" />
+      <Button fx:id="saveButton" layoutX="229.0" layoutY="332.0" mnemonicParsing="false" onAction="#saveAlert" text="Save" />
+      <Button fx:id="clearButton" layoutX="376.0" layoutY="332.0" mnemonicParsing="false" onAction="#clearTextFields" text="Clear" />
+      <Label fx:id="errorLabel" layoutX="21.0" layoutY="305.0" prefHeight="20.0" prefWidth="577.0" />
+   </children>
+</AnchorPane>

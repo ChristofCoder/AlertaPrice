@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.hcw.alertaprice.LoginController">
+   <children>
+      <TextField fx:id="nameTextfield" layoutX="220.0" layoutY="110.0" promptText="Vorname Nachname" />
+      <TextField fx:id="emailTextfield" layoutX="220.0" layoutY="175.0" promptText="example@mail.com" />
+      <Label layoutX="143.0" layoutY="115.0" text="Name:" />
+      <Label layoutX="143.0" layoutY="180.0" text="E-Mail: " />
+      <Button fx:id="loginButton" layoutX="227.0" layoutY="259.0" mnemonicParsing="false" onAction="#logIn" text="Log in" />
+      <Button fx:id="clearButton" layoutX="312.0" layoutY="259.0" mnemonicParsing="false" onAction="#clearTextFields" text="Clear" />
+   </children>
+</AnchorPane>
