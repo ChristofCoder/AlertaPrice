@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.hcw.alertaprice.LoginController">
    <children>
@@ -13,5 +14,11 @@
       <Label layoutX="143.0" layoutY="180.0" text="E-Mail: " />
       <Button fx:id="loginButton" layoutX="227.0" layoutY="259.0" mnemonicParsing="false" onAction="#logIn" text="Log in" />
       <Button fx:id="clearButton" layoutX="312.0" layoutY="259.0" mnemonicParsing="false" onAction="#clearTextFields" text="Clear" />
+      <Label layoutX="285.0" layoutY="46.0" text="Log in">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+      <TextField fx:id="errorTextField" layoutX="36.0" layoutY="321.0" prefHeight="26.0" prefWidth="529.0" />
    </children>
 </AnchorPane>

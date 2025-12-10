@@ -19,10 +19,9 @@ public class WebAlertManager {
 
     public static void createWebAlert(String name, String url, String cssSelector) {
         try {
+            loadFromFile(); //das ist wichtig! Es lädt die bestehende webalerts.json file und setzt nextId auf den richtigen Wert
+
             WebAlert webAlert = new WebAlert(nextId, name, url, cssSelector);
-
-            loadFromFile(); //das ist wichtig!
-
             webAlerts.add(webAlert);
             System.out.println("WebAlert '" + name + "' erfolgreich erstellt und gespeichert!");
             nextId++; // ensure that next id will be +1

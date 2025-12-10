@@ -48,9 +48,7 @@ public class AddFirstAlertController implements Initializable {
         urlTextField.setText("");
         cssTextField.setText("");
     }
-    public void login(ActionEvent event){
-        //TODO: über Users in users.json iterieren etc.
-    }
+
     public void saveAlert(ActionEvent event) throws IOException {
 
         //TODO: save to JSON File
@@ -63,18 +61,12 @@ public class AddFirstAlertController implements Initializable {
             return;
         }
 
-        System.out.println("Name: " + name);
-        System.out.println("URL: " + url);
-        System.out.println("CSS-Selector: " + css);
         try {
             WebAlertManager.createWebAlert(name, url, css);
         } catch (Exception e) {
             errorLabel.setText(e.getMessage());
             return;
         }
-
-
-        //TODO: switch to showAlertView
 
         root = FXMLLoader.load(getClass().getResource("showAlertsView.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();

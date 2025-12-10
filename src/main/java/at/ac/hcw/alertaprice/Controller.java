@@ -8,9 +8,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class Controller {
 
@@ -20,18 +22,21 @@ public class Controller {
 
     @FXML
     private Button setupButton;
-    @FXML
-    private Button loginButton;
+//    @FXML
+//    private Button loginButton;
     @FXML
     private Label welcomeLabel;
+//    @FXML
+//    private MenuItem setupMenuItem;
 
-    public void login(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("loginView.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow(); //Man bleibt auf der gleichen Stage
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
+
+//    public void login(ActionEvent event) throws IOException {
+//        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("loginView.fxml")));
+//        stage = (Stage)((Node)event.getSource()).getScene().getWindow(); //Man bleibt auf der gleichen Stage
+//        scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+//    }
 
     public void switchToSetupView(ActionEvent event) throws IOException {
 
@@ -43,9 +48,6 @@ public class Controller {
 
     }
 
-//    protected void switchToSetupView() {
-//        SceneManager.getInstance().switchScene("setupView.fxml");
-//    }
 }
 
 

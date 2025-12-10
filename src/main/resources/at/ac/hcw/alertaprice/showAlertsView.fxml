@@ -18,11 +18,8 @@
        <TableView fx:id="itemTable" layoutX="219.0" layoutY="180.0" prefHeight="200.0" prefWidth="349.0">
            <columns>
             <TableColumn fx:id="id" prefWidth="24.0" text="ID" />
-            <TableColumn fx:id="name" prefWidth="186.0" text="Name" />
-               <TableColumn fx:id="originalValue" prefWidth="57.0" text="Price (€)" />
-            <TableColumn fx:id="stringCreatedAt" prefWidth="177.0" text="created at" visible="false" />
-               <TableColumn fx:id="columnUrl" prefWidth="62.0" text="URL" visible="false" />
-            <TableColumn fx:id="cssSelector" minWidth="0.0" prefWidth="94.0" text="CSS Selector" visible="false" />
+            <TableColumn fx:id="name" prefWidth="239.0" text="Name" />
+               <TableColumn fx:id="originalValue" prefWidth="85.0" text="Price (€)" />
            </columns>
        </TableView>
       <Button fx:id="addAlertButton" layoutX="219.0" layoutY="96.0" mnemonicParsing="false" onAction="#addAlert" text="Add new Alert" />

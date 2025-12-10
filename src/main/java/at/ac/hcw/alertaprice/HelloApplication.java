@@ -14,22 +14,12 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-//        SceneManager.getInstance().setPrimaryStage(stage, "AlertaPrice WebBot");
-//        SceneManager.getInstance().switchScene("webbotView.fxml");
-//        Parent root = FXMLLoader.load(getClass().getResource("menuBar.fxml"));
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("webbotView.fxml"));
         Parent root = loader.load();
         Controller controller = loader.getController();
 
-        //Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         Scene scene = new Scene(root);
-//        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-//            @Override
-//            public void handle(KeyEvent keyEvent) {
-//                System.out.println(keyEvent.getCode());
-//            }
-//        });
-        //scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
         stage.setTitle("AlertaPrice WebBot");
         stage.setScene(scene);

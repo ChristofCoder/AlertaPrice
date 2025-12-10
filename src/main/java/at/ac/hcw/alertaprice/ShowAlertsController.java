@@ -38,10 +38,8 @@ public class ShowAlertsController implements Initializable {
     @FXML private TableView<WebAlert> itemTable;
     @FXML private TableColumn<WebAlert, Integer>  id;
     @FXML private TableColumn<WebAlert, String> name;
-    @FXML private TableColumn<WebAlert, String> columnUrl;
-    @FXML private TableColumn<WebAlert, String> cssSelector;
     @FXML private TableColumn<WebAlert, String> originalValue;
-    @FXML private TableColumn<WebAlert, String> stringCreatedAt;
+
 
     @FXML
     private TextField idTextField;
@@ -62,10 +60,10 @@ public class ShowAlertsController implements Initializable {
         // 1. Define how columns read data from the Item class
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
-        columnUrl.setCellValueFactory(new PropertyValueFactory<>("url"));
-        cssSelector.setCellValueFactory(new PropertyValueFactory<>("cssSelector"));
+//        columnUrl.setCellValueFactory(new PropertyValueFactory<>("url"));
+//        cssSelector.setCellValueFactory(new PropertyValueFactory<>("cssSelector"));
         originalValue.setCellValueFactory(new PropertyValueFactory<>("originalValue"));
-        stringCreatedAt.setCellValueFactory(new PropertyValueFactory<>("createdAt"));
+//        stringCreatedAt.setCellValueFactory(new PropertyValueFactory<>("createdAt"));
 
 
 
@@ -113,15 +111,6 @@ public class ShowAlertsController implements Initializable {
     }
 
     public void deleteAlert(ActionEvent event) throws IOException{
-//        Stage stage;
-//        Scene scene;
-//        Parent root;
-//
-//        root = FXMLLoader.load(getClass().getResource("deleteAlertView.fxml"));
-//        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-//        scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
 
         Stage stage;
         Scene scene;
@@ -131,15 +120,10 @@ public class ShowAlertsController implements Initializable {
 
         WebAlertManager.deleteWebAlert(id);
 
-
-
         root = FXMLLoader.load(getClass().getResource("showAlertsView.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
-
-
     }
 }

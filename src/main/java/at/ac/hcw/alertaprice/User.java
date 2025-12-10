@@ -1,5 +1,7 @@
 package at.ac.hcw.alertaprice;
 
+import java.util.Objects;
+
 public class User {
 
 
@@ -19,9 +21,24 @@ public class User {
         return instance;
     }
 
+    public String getFilename(){ return filename; }
+
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email;}
+
+   @Override
+   public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            User user = (User) o;
+            return name.equals(user.name) && email.equals(user.email);
+        }
+        @Override
+        public int hashCode() {
+            return Objects.hash(name, email);
+        }
+
 }
