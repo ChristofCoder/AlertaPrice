@@ -117,4 +117,15 @@ public class WebAlertManager {
             System.out.println("Fehler beim Speichern: " + e.getMessage());
         }
     }
+
+    public static boolean updatePrices() throws IOException {
+        boolean newPriceFound = false;
+        for(WebAlert alert : webAlerts){
+            if (!alert.getCurrentValue().equals(alert.getOriginalValue())){
+                alert.setOriginalValue(alert.getCurrentValue());
+                newPriceFound = true;
+            }
+        }
+        return newPriceFound;
+    }
 }

@@ -1,55 +1,15 @@
 [
   {
-    "id": 1,
-    "name": "a",
-    "url": "https://shop.billa.at/produkte/vier-diamanten-thunfisch-naturell-00415575",
-    "cssSelector": "div.ws-product-price-type__value",
-    "originalValue": "3,49 €",
-    "stringCreatedAt": "2025-12-09"
-  },
-  {
-    "id": 2,
-    "name": "Test new",
+    "id": 17,
+    "name": "test49",
     "url": "https://shop.billa.at/produkte/vier-diamanten-thunfisch-naturell-00415575",
     "cssSelector": "div.ws-product-price-type__value",
     "originalValue": "3,49 €",
     "stringCreatedAt": "2025-12-10"
   },
   {
-    "id": 3,
-    "name": "new",
-    "url": "https://shop.billa.at/produkte/vier-diamanten-thunfisch-naturell-00415575",
-    "cssSelector": "div.ws-product-price-type__value",
-    "originalValue": "3,49 €",
-    "stringCreatedAt": "2025-12-10"
-  },
-  {
-    "id": 4,
-    "name": "new",
-    "url": "https://shop.billa.at/produkte/vier-diamanten-thunfisch-naturell-00415575",
-    "cssSelector": "div.ws-product-price-type__value",
-    "originalValue": "3,49 €",
-    "stringCreatedAt": "2025-12-10"
-  },
-  {
-    "id": 5,
-    "name": "new",
-    "url": "https://shop.billa.at/produkte/vier-diamanten-thunfisch-naturell-00415575",
-    "cssSelector": "div.ws-product-price-type__value",
-    "originalValue": "3,49 €",
-    "stringCreatedAt": "2025-12-10"
-  },
-  {
-    "id": 6,
-    "name": "new",
-    "url": "https://shop.billa.at/produkte/vier-diamanten-thunfisch-naturell-00415575",
-    "cssSelector": "div.ws-product-price-type__value",
-    "originalValue": "3,49 €",
-    "stringCreatedAt": "2025-12-10"
-  },
-  {
-    "id": 7,
-    "name": "asdf",
+    "id": 18,
+    "name": "Thunfisch BILLA",
     "url": "https://shop.billa.at/produkte/vier-diamanten-thunfisch-naturell-00415575",
     "cssSelector": "div.ws-product-price-type__value",
     "originalValue": "3,49 €",
