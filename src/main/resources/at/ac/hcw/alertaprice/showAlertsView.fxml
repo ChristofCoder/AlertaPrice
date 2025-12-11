@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.hcw.alertaprice.ShowAlertsController">
+<AnchorPane fx:id="showAlertsPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.hcw.alertaprice.ShowAlertsController">
    <children>
       <Label fx:id="myLabel" alignment="CENTER" layoutX="6.0" layoutY="5.0" prefHeight="17.0" prefWidth="592.0" text="Label">
          <font>
@@ -32,5 +32,8 @@
       <TextField fx:id="inputTextfield" layoutX="173.0" layoutY="153.0" prefHeight="26.0" prefWidth="27.0" />
       <Label layoutX="219.0" layoutY="157.0" text="seconds." />
       <Button fx:id="stopButton" layoutX="120.0" layoutY="187.0" mnemonicParsing="false" onAction="#stopclick" text="Stop" />
+      <Button fx:id="editAlertButton" layoutX="446.0" layoutY="128.0" mnemonicParsing="false" onAction="#switchToEditView" prefHeight="26.0" prefWidth="81.0" text="Edit Alert" />
+      <TextField fx:id="editAlertTextField" layoutX="536.0" layoutY="129.0" prefHeight="26.0" prefWidth="43.0" promptText="ID" />
+      <Button fx:id="quitButton" layoutX="20.0" layoutY="354.0" mnemonicParsing="false" onAction="#quit" text="Quit" />
    </children>
 </AnchorPane>

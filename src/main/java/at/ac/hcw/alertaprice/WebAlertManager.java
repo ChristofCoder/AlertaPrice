@@ -53,6 +53,11 @@ public class WebAlertManager {
         System.out.println("WebAlert mit ID " + id + " nicht gefunden!");
     }
 
+    public static void deleteAllAlerts(){
+        webAlerts.clear();
+        saveToFile(webAlerts);
+    }
+
     public static void deleteWebAlert(int id) {
         for(int i = 0; i < webAlerts.size() ;i++) {
             if(id == webAlerts.get(i).getId()) {

@@ -4,6 +4,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,21 +27,23 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.show();
 
-//        stage.setOnCloseRequest(event -> {
-//            event.consume();// Das Event bricht ab, wenn die Methode vorbei ist. Die folgende Methode logout kümmert sich um das Schliessen, wenn gewünscht.
-//            logout(stage);//wenn die Stage mit dem roten X geschlossen wird wird die Methode logout aufgerufen
-//        });
+        stage.setOnCloseRequest(event -> {
+            event.consume();// Das Event bricht ab, wenn die Methode vorbei ist. Die folgende Methode logout kümmert sich um das Schliessen, wenn gewünscht.
+            logout(stage);//wenn die Stage mit dem roten X geschlossen wird, wird die Methode logout aufgerufen
+        });
     }
-//    public void logout(Stage stage){
-//        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-//        alert.setTitle("Logout");
-//        alert.setHeaderText("You're about to logout!");
-//        alert.setContentText("Do you want to save before exiting?");
-//
-//        if (alert.showAndWait().get() == ButtonType.OK){
-//
-//            System.out.println("You successfully logged out");
-//            stage.close();
-//        }
-//    }
+    public void logout(Stage stage){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Logout");
+        alert.setHeaderText("All your Alerts will be deleted!");
+        alert.setContentText("Do you really want to quit?");
+
+        if (alert.showAndWait().get() == ButtonType.OK){
+
+            System.out.println("You successfully logged out");
+            WebAlertManager.deleteAllAlerts();
+            stage.close();
+        }
+    }
+
 }

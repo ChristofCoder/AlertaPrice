@@ -32,9 +32,18 @@ import java.util.concurrent.TimeUnit;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class ShowAlertsController implements Initializable {
+
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
+    @FXML
+    private AnchorPane showAlertsPane;
+
     @FXML
     private Label myLabel;
 
@@ -59,6 +68,11 @@ public class ShowAlertsController implements Initializable {
     private TextField inputTextfield;
     @FXML
     private Button stopButton;
+    @FXML
+    private TextField editAlertTextField;
+    @FXML
+    private Button editAlertButton;
+
 
     private volatile boolean klicked = false;
     private ScheduledExecutorService scheduler;
@@ -224,4 +238,39 @@ public class ShowAlertsController implements Initializable {
 
         }, 0, intervalSeconds, TimeUnit.SECONDS); // Delay 0, Repeat every 'intervalSeconds'
     }
+
+    public void quit(ActionEvent event){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Logout");
+        alert.setHeaderText("All your Alerts will be deleted!");
+        alert.setContentText("Do you really want to quit?");
+
+        if (alert.showAndWait().get() == ButtonType.OK){
+            stage = (Stage) showAlertsPane.getScene().getWindow(); //so that our stage is the current stage that we are working with
+            System.out.println("You successfully logged out");
+            stage.close();
+        }
+    }
+
+    public void switchToEditView(ActionEvent event) throws IOException{
+//Die eingegebene ID wird in der einen Instanz der Klasse ID_Saver gespeichert um im nächsten Fenster verfügbar zu sein.
+        int id = Integer.parseInt(editAlertTextField.getText());
+        ID_Saver.getInstance().setId(id);
+        System.out.println("ID_Saver Instant erstellt: " + ID_Saver.getInstance().getId());
+
+        Stage stage;
+        Scene scene;
+        Parent root;
+
+        root = FXMLLoader.load(getClass().getResource("editView.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
+
 }
+
+
