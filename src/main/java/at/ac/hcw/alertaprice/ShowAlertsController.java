@@ -246,14 +246,14 @@ public class ShowAlertsController implements Initializable {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Logout");
-        alert.setHeaderText("All your Alerts will be deleted!");
-        alert.setContentText("Do you really want to quit?");
+        alert.setHeaderText("All your Alerts will be saved!");
+        alert.setContentText("See you next time!");
 
         if (alert.showAndWait().get() == ButtonType.OK){
 
             stage = (Stage) showAlertsPane.getScene().getWindow(); //so that our stage is the current stage that we are working with
             System.out.println("You successfully logged out");
-            WebAlertManager.deleteAllAlerts();
+//            WebAlertManager.deleteAllAlerts();
             stage.close();
         }
     }
@@ -262,7 +262,7 @@ public class ShowAlertsController implements Initializable {
 //Die eingegebene ID wird in der einen Instanz der Klasse ID_Saver gespeichert um im nächsten Fenster verfügbar zu sein.
         int id = Integer.parseInt(editAlertTextField.getText());
         ID_Saver.getInstance().setId(id);
-        System.out.println("ID_Saver Instant erstellt: " + ID_Saver.getInstance().getId());
+        System.out.println("ID_Saver Instanz erstellt: " + ID_Saver.getInstance().getId());
 
         Stage stage;
         Scene scene;

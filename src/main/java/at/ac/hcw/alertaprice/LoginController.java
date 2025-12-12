@@ -96,7 +96,7 @@ public class LoginController {
 
         } catch (FileNotFoundException e) {
             // Datei existiert nicht.
-            errorTextField.setText("Login fehlgeschlagen: users.json Datei nicht gefunden.");
+            errorTextField.setText("Login fehlgeschlagen: user.json Datei nicht gefunden.");
         } catch (Exception e) {
             // Allgemeine Fehlerbehandlung
             errorTextField.setText("Ein Fehler ist aufgetreten: " + e.getMessage());

@@ -26,7 +26,12 @@
                   <Font size="23.0" />
                </font>
             </Label>
-            <Button fx:id="setupButton" alignment="CENTER" layoutX="237.0" layoutY="144.0" mnemonicParsing="false" onAction="#switchToSetupView" text="Set Up Your Account" />
+            <Button fx:id="setupButton" alignment="CENTER" layoutX="230.0" layoutY="200.0" mnemonicParsing="false" onAction="#switchToSetupView" text="Set Up New Account" />
+            <Label fx:id="helloLabel" alignment="CENTER" layoutX="-6.0" layoutY="150.0" prefHeight="26.0" prefWidth="602.0" text="Please set up a new account!">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </items>

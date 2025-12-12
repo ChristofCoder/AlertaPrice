@@ -35,13 +35,13 @@ public class HelloApplication extends Application {
     public void logout(Stage stage){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Logout");
-        alert.setHeaderText("All your Alerts will be deleted!");
-        alert.setContentText("Do you really want to quit?");
+        alert.setHeaderText("All your Alerts will be saved!");
+        alert.setContentText("See you next time!");
 
         if (alert.showAndWait().get() == ButtonType.OK){
 
             System.out.println("You successfully logged out");
-            WebAlertManager.deleteAllAlerts();
+//            WebAlertManager.deleteAllAlerts();
             stage.close();
         }
     }
