@@ -240,14 +240,20 @@ public class ShowAlertsController implements Initializable {
     }
 
     public void quit(ActionEvent event){
+
+        event.consume();// Das Event bricht ab, wenn die Methode vorbei ist. Die folgende Methode logout kümmert sich um das Schliessen, wenn gewünscht.
+
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Logout");
         alert.setHeaderText("All your Alerts will be deleted!");
         alert.setContentText("Do you really want to quit?");
 
         if (alert.showAndWait().get() == ButtonType.OK){
+
             stage = (Stage) showAlertsPane.getScene().getWindow(); //so that our stage is the current stage that we are working with
             System.out.println("You successfully logged out");
+            WebAlertManager.deleteAllAlerts();
             stage.close();
         }
     }
