@@ -7,6 +7,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class WebAlertManager {
     private static ArrayList<WebAlert> webAlerts = new ArrayList<>();
@@ -132,5 +133,9 @@ public class WebAlertManager {
             }
         }
         return newPriceFound;
+    }
+
+    public static ArrayList<WebAlert> getWebAlerts() {
+        return webAlerts;
     }
 }

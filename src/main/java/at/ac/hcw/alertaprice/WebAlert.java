@@ -6,8 +6,9 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.function.Function;
 
-public class WebAlert {
+public class WebAlert implements Function<T, @org.jetbrains.annotations.NotNull U> {
     private int id;
     private String name;
     private String url;
@@ -85,4 +86,8 @@ public class WebAlert {
         this.stringCreatedAt = LocalDate.now().toString();
     }
 
+    @Override
+    public U apply(T t) {
+        return null;
+    }
 }
