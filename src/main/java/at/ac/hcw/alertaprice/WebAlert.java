@@ -8,12 +8,13 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.function.Function;
 
-public class WebAlert implements Function<T, @org.jetbrains.annotations.NotNull U> {
+public class WebAlert {
     private int id;
     private String name;
     private String url;
     private String cssSelector;
-    private String originalValue;
+    private String previousValue; //todo: methode schreiben, die den aktuellen wert aus dem json holt, bevor getcurrentvalue ausgeführt wird
+    private String currentValue;
     private String stringCreatedAt;
 
     public WebAlert(int id, String name, String url, String cssSelector) throws IOException { // throws error if website connection is rejected
@@ -21,7 +22,8 @@ public class WebAlert implements Function<T, @org.jetbrains.annotations.NotNull 
         this.name = name;
         this.url = url;
         this.cssSelector = cssSelector;
-        this.originalValue = getCurrentValue();
+        this.previousValue = String.valueOf(0);
+        this.currentValue = getCurrentValue();
         this.stringCreatedAt = LocalDate.now().toString();
     }
 
@@ -71,11 +73,11 @@ public class WebAlert implements Function<T, @org.jetbrains.annotations.NotNull 
     }
 
     public String getOriginalValue() {
-        return originalValue;
+        return currentValue;
     }
 
     public void setOriginalValue(String originalValue) {
-        this.originalValue = originalValue;
+        this.currentValue = originalValue;
     }
 
     public String getStringCreatedAt() {
@@ -86,8 +88,4 @@ public class WebAlert implements Function<T, @org.jetbrains.annotations.NotNull 
         this.stringCreatedAt = LocalDate.now().toString();
     }
 
-    @Override
-    public U apply(T t) {
-        return null;
-    }
 }
