@@ -4,7 +4,7 @@ import java.util.*;
 
 import static at.ac.hcw.alertaprice.WebAlertManager.getWebAlerts;
 
-public class filterandlist {
+public class FilterSortAndList {
     Scanner scanner = new Scanner(System.in);
     private ArrayList<WebAlert> filtersort = getWebAlerts();
 
