@@ -14,6 +14,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ResourceBundle;
 
 public class UserProfileController implements Initializable {
@@ -70,6 +72,16 @@ public class UserProfileController implements Initializable {
         if (alert.showAndWait().orElse(ButtonType.CANCEL) != ButtonType.OK) return;
 
         try {
+            // Also clear alerts so the next created user doesn't inherit them (single-user v1 design)
+            // Do both: clear in-memory list AND remove the persisted file.
+            try {
+                WebAlertManager.deleteAllAlerts();
+                Files.deleteIfExists(Path.of("webalerts.json"));
+            } catch (Exception alertsEx) {
+                // Don't block profile deletion if alert cleanup fails; just inform the user.
+                statusLabel.setText("Profile deleted, but alert cleanup failed: " + alertsEx.getMessage());
+            }
+
             UserRepository.delete();
             User.setInstance(new User()); //resettet single user
             switchTo(event, "webbotView.fxml"); //geht zurück zum anfang

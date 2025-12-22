@@ -264,7 +264,7 @@ public class ShowAlertsController implements Initializable {
         ID_Saver.getInstance().setId(id);
         System.out.println("ID_Saver Instanz erstellt: " + ID_Saver.getInstance().getId());
 
-        go(event, "editView.fxml");
+        go(event, "editAlertView.fxml");
     }
 
 
