@@ -7,32 +7,64 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.5" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.hcw.alertaprice.SetupController">
+<SplitPane dividerPositions="0.30457227138643067" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.hcw.alertaprice.SetupController">
    <items>
-      <AnchorPane prefHeight="400.0" prefWidth="0.0">
+      <AnchorPane prefHeight="400.0" prefWidth="200.0" stylesheets="@styles.css">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="23.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@shopping-bag.png" />
-               </image>
-            </ImageView>
+            <VBox spacing="18" alignment="TOP_CENTER"
+                  AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+
+               <!-- Spacer so the image stays at the bottom -->
+               <Region VBox.vgrow="ALWAYS" />
+
+               <ImageView fitHeight="162.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@alertalogo.png" />
+                  </image>
+               </ImageView>
+            </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="400.0" prefWidth="401.0">
+      <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css">
          <children>
-            <Label layoutX="132.0" layoutY="61.0" text="Setup">
-               <font>
-                  <Font size="32.0" />
-               </font>
-            </Label>
-            <TextField fx:id="nameTextField" layoutX="110.0" layoutY="148.0" promptText="Vorname Nachname" />
-            <TextField fx:id="emailTextField" layoutX="109.0" layoutY="192.0" promptText="name@example.com" />
-            <Label layoutX="41.0" layoutY="152.0" text="Name:" />
-            <Label layoutX="40.0" layoutY="205.0" text="E-Mail:" />
-            <Button fx:id="saveButton" layoutX="110.0" layoutY="255.0" mnemonicParsing="false" onAction="#saveUser" text="Save" />
-            <Button fx:id="clearButton" layoutX="186.0" layoutY="255.0" mnemonicParsing="false" onAction="#clearTextFields" text="Clear" />
+            <VBox spacing="14" alignment="CENTER"
+                  AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+
+               <Label text="Setup">
+                  <font>
+                     <Font size="32.0" />
+                  </font>
+               </Label>
+
+               <VBox spacing="10" maxWidth="280">
+                  <HBox spacing="10" alignment="CENTER_LEFT">
+                     <Label text="Name:" />
+                     <Region HBox.hgrow="ALWAYS" />
+                  </HBox>
+                  <TextField fx:id="nameTextField" promptText="Vorname Nachname" />
+
+                  <HBox spacing="10" alignment="CENTER_LEFT">
+                     <Label text="E-Mail:" />
+                     <Region HBox.hgrow="ALWAYS" />
+                  </HBox>
+                  <TextField fx:id="emailTextField" promptText="name@example.com" />
+
+                  <HBox spacing="12" alignment="CENTER">
+                     <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveUser" text="Save" />
+                     <Button fx:id="clearButton" mnemonicParsing="false" onAction="#clearTextFields" text="Clear" />
+                  </HBox>
+               </VBox>
+            </VBox>
          </children>
       </AnchorPane>
    </items>

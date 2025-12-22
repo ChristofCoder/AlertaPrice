@@ -1,0 +1,49 @@
+.root {
+    -ap-orange: #fea32d;
+    -ap-pink:   #f3979d;
+    -ap-purple: #dc5acd;
+    -ap-blue:   #6997f4;
+
+    -fx-font-family: "Segoe UI";
+}
+
+/* Colorful frame shell (we will wrap every view in this) */
+.app-shell {
+    -fx-background-color:
+            linear-gradient(to bottom right, -ap-orange, -ap-purple, -ap-blue),
+            white;
+    -fx-background-insets: 0, 10;     /* frame thickness */
+    -fx-background-radius: 18, 10;
+    -fx-padding: 18;                   /* keeps content away from frame */
+}
+
+/* Nice inputs */
+.text-field, .password-field {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: rgba(0,0,0,0.15);
+    -fx-padding: 8 10 8 10;
+}
+
+/* Rounded button base */
+.button {
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+    -fx-font-weight: 700;
+    -fx-padding: 8 16 8 16;
+    -fx-cursor: hand;
+}
+
+/* Button “variants” you can apply */
+.primary-btn {
+    -fx-background-color: linear-gradient(to right, -ap-orange, -ap-purple);
+    -fx-text-fill: white;
+}
+.secondary-btn {
+    -fx-background-color: -ap-blue;
+    -fx-text-fill: white;
+}
+.danger-btn {
+    -fx-background-color: linear-gradient(to right, -ap-pink, -ap-purple);
+    -fx-text-fill: white;
+}

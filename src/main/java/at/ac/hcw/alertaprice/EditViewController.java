@@ -6,10 +6,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -47,17 +47,18 @@ public class EditViewController implements Initializable {
         try {
             WebAlertManager.updateWebAlert(id, name,url,css);
             errorLabel.setText("Update successful");
-            Stage stage;
-            Scene scene;
-            Parent root;
 
-            root = FXMLLoader.load(getClass().getResource("showAlertsView.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            Parent content = FXMLLoader.load(getClass().getResource("showAlertsView.fxml"));
+
+            // Wrap the view so the colorful frame + CSS stay consistent
+            BorderPane shell = new BorderPane(content);
+            shell.getStyleClass().add("app-shell");
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.getScene().setRoot(shell); // keep the existing Scene (keeps styles.css)
+
         } catch (Exception e) {
-            errorLabel.setText("Update failed" + e.getMessage());
+            errorLabel.setText("Update failed: " + e.getMessage());
         }
 
 

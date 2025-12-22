@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Billa Bananen",
+    "url": "https://shop.billa.at/produkte/ja-natuerlich-bananen-00402489",
+    "cssSelector": "title",
+    "originalValue": "Ja! Natürlich Bananen | BILLA Online Shop",
+    "stringCreatedAt": "2025-12-22"
+  },
+  {
+    "id": 2,
+    "name": "Bio Joghurt",
+    "url": "https://shop.billa.at/produkte/ja-natuerlich-joghurt-natur-36-00503905",
+    "cssSelector": "preis",
+    "originalValue": "Nicht gefunden",
+    "stringCreatedAt": "2025-12-22"
+  },
+  {
+    "id": 3,
+    "name": "Billa Heidelbeeren",
+    "url": "https://shop.billa.at/produkte/heidelbeeren-00410607",
+    "cssSelector": "title",
+    "originalValue": "Heidelbeeren | BILLA Online Shop",
+    "stringCreatedAt": "2025-12-22"
+  },
+  {
+    "id": 4,
+    "name": "Billa Äpfel",
+    "url": "https://shop.billa.at/produkte/wunderlinge-aepfel-00804413",
+    "cssSelector": "titel",
+    "originalValue": "Nicht gefunden",
+    "stringCreatedAt": "2025-12-22"
+  },
+  {
+    "id": 5,
+    "name": "Clever Ananas",
+    "url": "https://shop.billa.at/produkte/clever-ananas-0088233",
+    "cssSelector": "title",
+    "originalValue": "Clever Ananas | BILLA Online Shop",
+    "stringCreatedAt": "2025-12-22"
+  },
+  {
+    "id": 6,
+    "name": "Avocado",
+    "url": "https://shop.billa.at/produkte/clever-avocado-00307536",
+    "cssSelector": "title",
+    "originalValue": "Clever Avocado | BILLA Online Shop",
+    "stringCreatedAt": "2025-12-22"
+  }
+]

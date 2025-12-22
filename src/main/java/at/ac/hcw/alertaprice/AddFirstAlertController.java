@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -15,6 +14,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.scene.layout.BorderPane;
 
 public class AddFirstAlertController implements Initializable {
 
@@ -33,9 +33,6 @@ public class AddFirstAlertController implements Initializable {
     @FXML
     private Label errorLabel;
 
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -68,11 +65,14 @@ public class AddFirstAlertController implements Initializable {
             return;
         }
 
-        root = FXMLLoader.load(getClass().getResource("showAlertsView.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        Parent content = FXMLLoader.load(getClass().getResource("showAlertsView.fxml"));
+
+        // Wrap the view so the colorful frame + CSS stay consistent
+        BorderPane shell = new BorderPane(content);
+        shell.getStyleClass().add("app-shell");
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.getScene().setRoot(shell); // keep the existing Scene (keeps styles.css)
 
     }
 }

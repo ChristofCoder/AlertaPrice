@@ -7,10 +7,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
-
 import java.io.IOException;
+import javafx.scene.layout.BorderPane;
+import java.net.URL;
+import java.util.Objects;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.layout.StackPane;
 
 public class HelloApplication extends Application {
+    public static final double APP_W = 800;
+    public static final double APP_H = 550;
 
     String[] user = new String[2];
 
@@ -18,13 +24,31 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("webbotView.fxml"));
-        Parent root = loader.load();
-        Controller controller = loader.getController();
+        Parent content = loader.load();
 
-        Scene scene = new Scene(root);
+        StackPane inner = new StackPane(content);
 
-        stage.setTitle("AlertaPrice WebBot");
+        Rectangle clip = new Rectangle();
+        clip.setArcWidth(20);
+        clip.setArcHeight(20);
+        clip.widthProperty().bind(inner.widthProperty());
+        clip.heightProperty().bind(inner.heightProperty());
+        inner.setClip(clip);
+
+        BorderPane shell = new BorderPane(inner);
+        shell.getStyleClass().add("app-shell");
+        Scene scene = new Scene(shell, APP_W, APP_H);
+
+        URL css = Objects.requireNonNull(
+                getClass().getResource("/at/ac/hcw/alertaprice/styles.css"),
+                "styles.css not found! Check resources path."
+        );
+        scene.getStylesheets().add(css.toExternalForm());
+
         stage.setScene(scene);
+        stage.setMinWidth(APP_W);
+        stage.setMinHeight(APP_H);
+        stage.setResizable(false);
         stage.show();
 
         stage.setOnCloseRequest(event -> {
