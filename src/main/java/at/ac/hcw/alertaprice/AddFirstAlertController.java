@@ -65,6 +65,7 @@ public class AddFirstAlertController implements Initializable {
             return;
         }
 
+
         Parent content = FXMLLoader.load(getClass().getResource("showAlertsView.fxml"));
 
         // Wrap the view so the colorful frame + CSS stay consistent
@@ -74,5 +75,14 @@ public class AddFirstAlertController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.getScene().setRoot(shell); // keep the existing Scene (keeps styles.css)
 
+    }
+    public void back(ActionEvent event) throws IOException {
+        Parent content = FXMLLoader.load(getClass().getResource("showAlertsView.fxml"));
+
+        BorderPane shell = new BorderPane(content);
+        shell.getStyleClass().add("app-shell");
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.getScene().setRoot(shell);
     }
 }

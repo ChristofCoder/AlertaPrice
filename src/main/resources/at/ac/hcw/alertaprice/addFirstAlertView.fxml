@@ -56,8 +56,15 @@
          <Label fx:id="errorLabel" maxWidth="520" wrapText="true" />
 
          <HBox spacing="12" alignment="CENTER">
-             <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveAlert" text="Save" styleClass="primary-btn" />
-             <Button fx:id="clearButton" mnemonicParsing="false" onAction="#clearTextFields" text="Clear" styleClass="secondary-btn" />
+             <HBox spacing="12" alignment="CENTER">
+
+                 <Button mnemonicParsing="false" onAction="#back"
+                         text="Back" styleClass="secondary-btn" />
+                 <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveAlert"
+                         text="Save" styleClass="primary-btn" />
+                 <Button fx:id="clearButton" mnemonicParsing="false" onAction="#clearTextFields"
+                         text="Clear" styleClass="secondary-btn" />
+             </HBox>
          </HBox>
 
          <Region VBox.vgrow="ALWAYS" />

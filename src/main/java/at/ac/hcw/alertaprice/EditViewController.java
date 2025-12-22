@@ -77,7 +77,19 @@ public class EditViewController implements Initializable {
         urlTextField.setText("");
         cssTextField.setText("");
     }
+    public void back(ActionEvent event) {
+        try {
+            Parent content = FXMLLoader.load(getClass().getResource("showAlertsView.fxml"));
 
+            BorderPane shell = new BorderPane(content);
+            shell.getStyleClass().add("app-shell");
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.getScene().setRoot(shell); // keep same Scene (CSS stays)
+        } catch (Exception e) {
+            errorLabel.setText("Navigation failed: " + e.getMessage());
+        }
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         firstAlertLabel.setText("Edit ID: " + id);

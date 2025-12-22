@@ -24,7 +24,7 @@
     <TextField fx:id="nameTextField" layoutX="174.0" layoutY="171.0" prefHeight="26.0" prefWidth="352.0" promptText="Produktname, Markt" />
     <TextField fx:id="urlTextField" layoutX="174.0" layoutY="213.0" prefHeight="26.0" prefWidth="352.0" promptText="https://www.shop.at/product.html" />
     <TextField fx:id="cssTextField" layoutX="174.0" layoutY="264.0" prefHeight="26.0" prefWidth="352.0" promptText="div.example" />
-    <Button fx:id="editButton" layoutX="229.0" layoutY="332.0" mnemonicParsing="false" onAction="#editAlert" text="Edit" />
+    <Button fx:id="editButton" layoutX="229.0" layoutY="332.0" mnemonicParsing="false" onAction="#editAlert" text="Save" />
     <Button fx:id="clearButton" layoutX="376.0" layoutY="332.0" mnemonicParsing="false" onAction="#clearTextFields" text="Clear" />
     <Label fx:id="errorLabel" layoutX="21.0" layoutY="305.0" prefHeight="20.0" prefWidth="577.0" />
 </children>
