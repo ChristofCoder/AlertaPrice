@@ -15,9 +15,9 @@
 <?import javafx.geometry.Pos?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.30457227138643067" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.hcw.alertaprice.SetupController">
+<SplitPane dividerPositions="0.30457227138643067" stylesheets="@styles.css" styleClass="ap-split" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.hcw.alertaprice.SetupController">
    <items>
-      <AnchorPane prefHeight="400.0" prefWidth="200.0" stylesheets="@styles.css">
+      <AnchorPane prefHeight="400.0" prefWidth="200.0" stylesheets="@styles.css" styleClass="ap-split-item ap-split-left">
          <children>
             <VBox spacing="18" alignment="TOP_CENTER"
                   AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
@@ -34,7 +34,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css">
+      <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css" styleClass="ap-split-item ap-split-right">
          <children>
             <VBox spacing="14" alignment="CENTER"
                   AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
@@ -60,8 +60,8 @@
                   <TextField fx:id="emailTextField" promptText="name@example.com" />
 
                   <HBox spacing="12" alignment="CENTER">
-                     <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveUser" text="Save" />
-                     <Button fx:id="clearButton" mnemonicParsing="false" onAction="#clearTextFields" text="Clear" />
+                      <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveUser" text="Save" styleClass="primary-btn" />
+                      <Button fx:id="clearButton" mnemonicParsing="false" onAction="#clearTextFields" text="Clear" styleClass="secondary-btn" />
                   </HBox>
                </VBox>
             </VBox>

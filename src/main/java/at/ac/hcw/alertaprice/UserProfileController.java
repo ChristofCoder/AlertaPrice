@@ -68,6 +68,8 @@ public class UserProfileController implements Initializable {
         alert.setTitle("Delete Profile");
         alert.setHeaderText("This will delete your user profile (user.json).");
         alert.setContentText("Continue?");
+        DialogUtil.style(alert);
+        DialogUtil.styleButtons(alert, ButtonType.OK, "danger-btn", ButtonType.CANCEL, "secondary-btn");
 
         if (alert.showAndWait().orElse(ButtonType.CANCEL) != ButtonType.OK) return;
 

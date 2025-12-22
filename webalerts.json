@@ -3,8 +3,8 @@
     "id": 1,
     "name": "Trauben",
     "url": "https://shop.billa.at/produkte/trauben-weiss-kernlos-0089414",
-    "cssSelector": "price",
-    "originalValue": "Nicht gefunden",
+    "cssSelector": "div.ws-product-price-type__value",
+    "originalValue": "2,99 €",
     "stringCreatedAt": "2025-12-22"
   }
 ]

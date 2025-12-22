@@ -61,6 +61,8 @@ public class HelloApplication extends Application {
         alert.setTitle("Logout");
         alert.setHeaderText("All your Alerts will be saved!");
         alert.setContentText("See you next time!");
+        DialogUtil.style(alert);
+        DialogUtil.styleButtons(alert, ButtonType.OK, "danger-btn", ButtonType.CANCEL, "secondary-btn");
 
         if (alert.showAndWait().get() == ButtonType.OK){
 

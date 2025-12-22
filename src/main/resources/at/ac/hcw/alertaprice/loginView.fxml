@@ -43,8 +43,8 @@
          </GridPane>
 
          <HBox spacing="12" alignment="CENTER">
-            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#logIn" text="Log in" />
-            <Button fx:id="clearButton" mnemonicParsing="false" onAction="#clearTextFields" text="Clear" />
+             <Button fx:id="loginButton" mnemonicParsing="false" onAction="#logIn" text="Log in" styleClass="primary-btn" />
+             <Button fx:id="clearButton" mnemonicParsing="false" onAction="#clearTextFields" text="Clear" styleClass="secondary-btn" />
          </HBox>
 
          <Region VBox.vgrow="ALWAYS" />

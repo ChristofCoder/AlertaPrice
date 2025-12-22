@@ -41,7 +41,7 @@
             <!-- LEFT: Controls -->
             <left>
                 <VBox spacing="10" prefWidth="260" BorderPane.alignment="TOP_LEFT">
-                    <Button fx:id="updateButton" mnemonicParsing="false" onAction="#updatePrices" text="Update Prices"/>
+                    <Button fx:id="updateButton" mnemonicParsing="false" onAction="#updatePrices" text="Update Prices" styleClass="primary-btn"/>
 
                     <Label fx:id="outputLabel" textFill="#f50202" wrapText="true"/>
 
@@ -54,16 +54,16 @@
                     </VBox>
 
                     <HBox spacing="10" alignment="CENTER_LEFT">
-                        <Button fx:id="start" mnemonicParsing="false" onAction="#start" text="Start"/>
-                        <Button fx:id="stopButton" mnemonicParsing="false" onAction="#stopclick" text="Stop"/>
+                        <Button fx:id="start" mnemonicParsing="false" onAction="#start" text="Start" styleClass="secondary-btn"/>
+                        <Button fx:id="stopButton" mnemonicParsing="false" onAction="#stopclick" text="Stop" styleClass="danger-btn"/>
                     </HBox>
 
                     <!-- push bottom buttons down -->
                     <Region VBox.vgrow="ALWAYS"/>
 
                     <HBox spacing="10">
-                        <Button fx:id="quitButton" mnemonicParsing="false" onAction="#quit" text="Quit"/>
-                        <Button fx:id="backButton" mnemonicParsing="false" onAction="#goBack" text="Back"/>
+                        <Button fx:id="quitButton" mnemonicParsing="false" onAction="#quit" text="Quit" styleClass="danger-btn"/>
+                        <Button fx:id="backButton" mnemonicParsing="false" onAction="#goBack" text="Back" styleClass="secondary-btn"/>
                     </HBox>
                 </VBox>
             </left>
@@ -86,12 +86,12 @@
 
                         <!-- Row 0: Add (left) + Delete (right) -->
                         <Button fx:id="addAlertButton" mnemonicParsing="false" onAction="#addAlert"
-                                text="Add new Alert" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                                text="Add new Alert" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="primary-btn" />
 
                         <Region GridPane.rowIndex="0" GridPane.columnIndex="1" />
 
                         <Button fx:id="deleteAlertsButton" mnemonicParsing="false" onAction="#deleteAlert"
-                                text="Delete Alert" prefWidth="110" minWidth="110"
+                                text="Delete Alert" prefWidth="110" minWidth="110" styleClass="danger-btn"
                                 GridPane.rowIndex="0" GridPane.columnIndex="2" />
 
                         <TextField fx:id="idTextField" onAction="#deleteAlert" promptText="ID"
@@ -102,7 +102,7 @@
                         <Region GridPane.rowIndex="1" GridPane.columnIndex="1" />
 
                         <Button fx:id="editAlertButton" mnemonicParsing="false" onAction="#switchToEditView"
-                                text="Edit Alert" prefHeight="26.0" prefWidth="110" minWidth="110"
+                                text="Edit Alert" prefHeight="26.0" prefWidth="110" minWidth="110" styleClass="secondary-btn"
                                 GridPane.rowIndex="1" GridPane.columnIndex="2" />
 
                         <TextField fx:id="editAlertTextField" prefHeight="26.0" promptText="ID"
@@ -111,7 +111,7 @@
                     </GridPane>
 
                     <!-- Table grows with window -->
-                    <TableView fx:id="itemTable" VBox.vgrow="ALWAYS">
+                    <TableView fx:id="itemTable" VBox.vgrow="ALWAYS" styleClass="ap-table">
                         <columns>
                             <TableColumn fx:id="id" prefWidth="50.0" text="ID"/>
                             <TableColumn fx:id="name" prefWidth="280.0" text="Name"/>

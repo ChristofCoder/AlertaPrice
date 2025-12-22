@@ -45,9 +45,9 @@
             <Label fx:id="statusLabel" maxWidth="520" wrapText="true" />
 
             <HBox spacing="12" alignment="CENTER">
-                <Button text="Save" onAction="#saveProfile" />
-                <Button text="Back" onAction="#back" />
-                <Button text="Delete Profile" onAction="#deleteProfile" />
+                <Button text="Save" onAction="#saveProfile" styleClass="primary-btn" />
+                <Button text="Back" onAction="#back" styleClass="secondary-btn" />
+                <Button text="Delete Profile" onAction="#deleteProfile" styleClass="danger-btn" />
             </HBox>
 
             <Region VBox.vgrow="ALWAYS" />

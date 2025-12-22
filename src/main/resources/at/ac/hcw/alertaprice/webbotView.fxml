@@ -1,24 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.Priority?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<SplitPane dividerPositions="0.30457227138643067" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.hcw.alertaprice.Controller">
+<SplitPane dividerPositions="0.30457227138643067" styleClass="ap-split" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.hcw.alertaprice.Controller">
     <items>
         <!-- left Anchor -->
-        <AnchorPane prefWidth="200.0" stylesheets="@styles.css">
+        <AnchorPane prefWidth="200.0" styleClass="ap-split-item ap-split-left" stylesheets="@styles.css">
             <children>
-                <VBox spacing="18.0" alignment="TOP_CENTER"
-                      AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
-                      AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                <VBox alignment="TOP_CENTER" spacing="18.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
                     <ImageView fx:id="logoImageView" fitHeight="162.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
                         <image>
@@ -26,18 +18,16 @@
                         </image>
                     </ImageView>
 
-                    <Button fx:id="myAlertsButton" mnemonicParsing="false" onAction="#switchToMyAlertsView"
-                            prefHeight="32.0" prefWidth="159.0" text="My Alerts" />
+                    <Button fx:id="myAlertsButton" mnemonicParsing="false" onAction="#switchToMyAlertsView" prefHeight="32.0" prefWidth="159.0" styleClass="secondary-btn" text="My Alerts" />
 
-                    <Button fx:id="profileMenuButton" mnemonicParsing="false" onAction="#switchToUserProfileView"
-                            prefHeight="32.0" prefWidth="159.0" text="User Profile" />
+                    <Button fx:id="profileMenuButton" mnemonicParsing="false" onAction="#switchToUserProfileView" prefHeight="32.0" prefWidth="159.0" styleClass="secondary-btn" text="User Profile" />
 
                     <!-- Spacer to keep the bag image pinned to the bottom -->
                     <Region VBox.vgrow="ALWAYS" />
 
-                    <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                    <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="168.0" pickOnBounds="true" preserveRatio="true">
                         <image>
-                            <Image url="@shopping-bag.png" />
+                            <Image url="@bags.png" />
                         </image>
                     </ImageView>
                 </VBox>
@@ -45,11 +35,9 @@
         </AnchorPane>
 
         <!-- right Anchor -->
-        <AnchorPane prefWidth="600.0" stylesheets="@styles.css">
+        <AnchorPane prefWidth="600.0" styleClass="ap-split-item ap-split-right" stylesheets="@styles.css">
             <children>
-                <VBox spacing="20.0" alignment="CENTER"
-                      AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
-                      AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                <VBox alignment="CENTER" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
                     <Label fx:id="welcomeLabel" alignment="CENTER" text="Welcome to the AlertaPrice WebBot!" wrapText="true">
                         <font>
@@ -63,9 +51,7 @@
                         </font>
                     </Label>
 
-                    <Button fx:id="setupButton" alignment="CENTER" mnemonicParsing="false" onAction="#switchToSetupView"
-                            prefHeight="32.0" prefWidth="180.0" style="-fx-background-color: #2548b8;" stylesheets="@styles.css"
-                            text="Set Up New Account" textFill="WHITE" />
+                    <Button fx:id="setupButton" alignment="CENTER" mnemonicParsing="false" onAction="#switchToSetupView" prefHeight="32.0" prefWidth="180.0" styleClass="primary-btn" text="Set Up New Account" />
                 </VBox>
             </children>
         </AnchorPane>
