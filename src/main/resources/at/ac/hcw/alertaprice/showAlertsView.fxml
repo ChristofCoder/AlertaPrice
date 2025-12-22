@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.Priority?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 
@@ -31,10 +30,10 @@
 
             <!-- TOP: Title -->
             <top>
-                <Label fx:id="myLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" text="Label">
-                    <font>
-                        <Font size="44.0"/>
-                    </font>
+                <Label fx:id="myLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" text="Label" styleClass="ap-title">
+                    <BorderPane.margin>
+                        <Insets top="0" right="0" bottom="14" left="0"/>
+                    </BorderPane.margin>
                 </Label>
             </top>
 
@@ -46,10 +45,10 @@
                     <Label fx:id="outputLabel" textFill="#f50202" wrapText="true"/>
 
                     <VBox spacing="6">
-                        <Label text="Start Auto-Update every" wrapText="true" />
+                        <Label text="Start Auto-Update every" wrapText="true" styleClass="ap-field-label"/>
                         <HBox spacing="6" alignment="CENTER_LEFT">
                             <TextField fx:id="inputTextfield" prefWidth="60" minWidth="60" />
-                            <Label text="seconds." />
+                            <Label text="seconds." styleClass="ap-field-label"/>
                         </HBox>
                     </VBox>
 

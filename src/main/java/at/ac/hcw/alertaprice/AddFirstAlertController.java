@@ -38,7 +38,7 @@ public class AddFirstAlertController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         String username = User.getInstance().getName();
-        firstAlertLabel.setText("Welcome " + username);
+        firstAlertLabel.setText("Hey, " + username);
     }
     public void clearTextFields(ActionEvent event){
         nameTextField.setText("");

@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.Priority?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css"
@@ -25,13 +24,13 @@
 
             <Region prefHeight="10" />
 
-            <Label fx:id="firstAlertLabel" alignment="CENTER" text="Label" wrapText="true">
-                <font><Font size="34.0" /></font>
+            <Label fx:id="firstAlertLabel" alignment="CENTER" text="Label" wrapText="true" styleClass="ap-title">
+                <VBox.margin>
+                    <Insets top="0" right="0" bottom="14" left="0"/>
+                </VBox.margin>
             </Label>
 
-            <Label alignment="CENTER" text="Edit Alert">
-                <font><Font size="16.0" /></font>
-            </Label>
+            <Label alignment="CENTER" text="Edit Alert" styleClass="ap-subtitle"/>
 
             <GridPane hgap="12" vgap="12" maxWidth="520">
                 <columnConstraints>
@@ -39,15 +38,15 @@
                     <ColumnConstraints hgrow="ALWAYS" />
                 </columnConstraints>
 
-                <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-                <TextField fx:id="nameTextField" promptText="Produktname, Markt" maxWidth="1.7976931348623157E308"
+                <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="ap-field-label"/>
+                <TextField fx:id="nameTextField" promptText="Product Title, Grocery Store" maxWidth="1.7976931348623157E308"
                            GridPane.rowIndex="0" GridPane.columnIndex="1" />
 
-                <Label text="URL:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                <Label text="URL:" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="ap-field-label"/>
                 <TextField fx:id="urlTextField" promptText="https://www.shop.at/product.html" maxWidth="1.7976931348623157E308"
                            GridPane.rowIndex="1" GridPane.columnIndex="1" />
 
-                <Label text="CSS Selector:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                <Label text="CSS Selector:" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="ap-field-label"/>
                 <TextField fx:id="cssTextField" promptText="div.example" maxWidth="1.7976931348623157E308"
                            GridPane.rowIndex="2" GridPane.columnIndex="1" />
             </GridPane>
@@ -77,3 +76,4 @@
         </VBox>
     </children>
 </AnchorPane>
+

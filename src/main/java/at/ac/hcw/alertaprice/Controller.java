@@ -162,7 +162,7 @@ public class Controller implements Initializable {
             String name = loadedUser.getName();
 
             // 3. Setzen Sie den Text
-            helloLabel.setText("Hello " + name + ", welcome back!");
+            helloLabel.setText("Nice to see you again " + name + ". Happy saving!");
 
             setupButton.setText("Show Alerts");
             setupButton.setOnAction(e -> {

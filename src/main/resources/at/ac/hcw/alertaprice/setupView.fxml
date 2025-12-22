@@ -40,21 +40,17 @@
                   AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
                   AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
 
-               <Label text="Setup">
-                  <font>
-                     <Font size="32.0" />
-                  </font>
-               </Label>
+               <Label text="Setup" styleClass="ap-title" />
 
                <VBox spacing="10" maxWidth="280">
                   <HBox spacing="10" alignment="CENTER_LEFT">
-                     <Label text="Name:" />
+                     <Label text="Name:" styleClass="ap-field-label" />
                      <Region HBox.hgrow="ALWAYS" />
                   </HBox>
                   <TextField fx:id="nameTextField" promptText="Vorname Nachname" />
 
                   <HBox spacing="10" alignment="CENTER_LEFT">
-                     <Label text="E-Mail:" />
+                     <Label text="E-Mail:" styleClass="ap-field-label" />
                      <Region HBox.hgrow="ALWAYS" />
                   </HBox>
                   <TextField fx:id="emailTextField" promptText="name@example.com" />

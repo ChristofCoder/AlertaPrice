@@ -22,17 +22,9 @@
 
          <Region prefHeight="10" />
 
-         <Label fx:id="firstAlertLabel" alignment="CENTER" text="Label" wrapText="true">
-            <font>
-               <Font size="37.0" />
-            </font>
-         </Label>
+         <Label fx:id="firstAlertLabel" alignment="CENTER" text="Label" wrapText="true" styleClass="ap-title" />
 
-         <Label alignment="CENTER" text="Add New Alert" wrapText="true">
-            <font>
-               <Font size="16.0" />
-            </font>
-         </Label>
+         <Label alignment="CENTER" text="Add New Alert" wrapText="true" styleClass="ap-subtitle" />
 
          <GridPane hgap="12" vgap="12" maxWidth="520">
             <columnConstraints>
@@ -40,15 +32,15 @@
                <ColumnConstraints hgrow="ALWAYS" />
             </columnConstraints>
 
-            <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-            <TextField fx:id="nameTextField" promptText="Produktname, Markt" maxWidth="1.7976931348623157E308"
+            <Label text="Name:" styleClass="ap-field-label" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+            <TextField fx:id="nameTextField" promptText="Product Title, Grocery Store" maxWidth="1.7976931348623157E308"
                        GridPane.rowIndex="0" GridPane.columnIndex="1" />
 
-            <Label text="URL:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+            <Label text="URL:" styleClass="ap-field-label" GridPane.rowIndex="1" GridPane.columnIndex="0" />
             <TextField fx:id="urlTextField" promptText="https://www.shop.at/product.html" maxWidth="1.7976931348623157E308"
                        GridPane.rowIndex="1" GridPane.columnIndex="1" />
 
-            <Label text="CSS Selector:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+            <Label text="CSS Selector:" styleClass="ap-field-label" GridPane.rowIndex="2" GridPane.columnIndex="0" />
             <TextField fx:id="cssTextField" promptText="div.example" maxWidth="1.7976931348623157E308"
                        GridPane.rowIndex="2" GridPane.columnIndex="1" />
          </GridPane>
@@ -56,15 +48,12 @@
          <Label fx:id="errorLabel" maxWidth="520" wrapText="true" />
 
          <HBox spacing="12" alignment="CENTER">
-             <HBox spacing="12" alignment="CENTER">
-
-                 <Button mnemonicParsing="false" onAction="#back"
-                         text="Back" styleClass="secondary-btn" />
-                 <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveAlert"
-                         text="Save" styleClass="primary-btn" />
-                 <Button fx:id="clearButton" mnemonicParsing="false" onAction="#clearTextFields"
-                         text="Clear" styleClass="secondary-btn" />
-             </HBox>
+             <Button mnemonicParsing="false" onAction="#back"
+                     text="Back" styleClass="secondary-btn" />
+             <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveAlert"
+                     text="Save" styleClass="primary-btn" />
+             <Button fx:id="clearButton" mnemonicParsing="false" onAction="#clearTextFields"
+                     text="Clear" styleClass="secondary-btn" />
          </HBox>
 
          <Region VBox.vgrow="ALWAYS" />
