@@ -44,8 +44,19 @@ public class EditViewController implements Initializable {
         String url = urlTextField.getText();
         String css = cssTextField.getText();
 
+        // Basic validation
+        if (name == null || name.isBlank() || url == null || url.isBlank() || css == null || css.isBlank()) {
+            errorLabel.setText("OOPS! Some input was missing!");
+            return;
+        }
+
         try {
-            WebAlertManager.updateWebAlert(id, name,url,css);
+            boolean ok = WebAlertManager.updateWebAlert(id, name, url, css);
+            if (!ok) {
+                errorLabel.setText("Update failed: ID not found or could not save.");
+                return;
+            }
+
             errorLabel.setText("Update successful");
 
             Parent content = FXMLLoader.load(getClass().getResource("showAlertsView.fxml"));
@@ -60,9 +71,6 @@ public class EditViewController implements Initializable {
         } catch (Exception e) {
             errorLabel.setText("Update failed: " + e.getMessage());
         }
-
-
-
     }
     public void clearTextFields(ActionEvent event){
         nameTextField.setText("");
@@ -72,7 +80,17 @@ public class EditViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         firstAlertLabel.setText("Edit ID: " + id);
+
+        WebAlert a = WebAlertManager.getWebAlertById(id);
+        if (a == null) {
+            errorLabel.setText("No alert found for ID " + id);
+            editButton.setDisable(true);
+            return;
+        }
+
+        nameTextField.setText(a.getName());
+        urlTextField.setText(a.getUrl());
+        cssTextField.setText(a.getCssSelector());
     }
 }
