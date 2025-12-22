@@ -22,6 +22,8 @@
 
                     <Button fx:id="profileMenuButton" mnemonicParsing="false" onAction="#switchToUserProfileView" prefHeight="32.0" prefWidth="159.0" styleClass="secondary-btn" text="User Profile" />
 
+                    <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logout" prefHeight="32.0" prefWidth="159.0" styleClass="secondary-btn" text="Log out" />
+
                     <!-- Spacer to keep the bag image pinned to the bottom -->
                     <Region VBox.vgrow="ALWAYS" />
 

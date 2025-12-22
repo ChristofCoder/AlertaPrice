@@ -22,6 +22,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 public class Controller implements Initializable {
 
@@ -32,6 +34,8 @@ public class Controller implements Initializable {
 
     @FXML
     private Button profileMenuButton;
+    @FXML
+    private Button logoutButton;
 
     //    @FXML
 //    private Button loginButton;
@@ -128,6 +132,22 @@ public class Controller implements Initializable {
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.getScene().setRoot(shell); // IMPORTANT: no new Scene
+    }
+
+    public void logout(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Logout");
+        alert.setHeaderText("All your Alerts will be saved!");
+        alert.setContentText("See you next time!");
+        DialogUtil.style(alert);
+        DialogUtil.styleButtons(alert, ButtonType.OK, "danger-btn", ButtonType.CANCEL, "secondary-btn");
+
+
+        if (alert.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
+            System.out.println("You successfully logged out");
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.close();
+        }
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
