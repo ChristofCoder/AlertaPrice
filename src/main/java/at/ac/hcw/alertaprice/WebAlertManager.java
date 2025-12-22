@@ -41,7 +41,8 @@ public class WebAlertManager {
                     webAlert.setName(newName);
                     webAlert.setUrl(newUrl);
                     webAlert.setCssSelector(newCssSelector);
-                    webAlert.setOriginalValue(webAlert.getCurrentValue());
+                    webAlert.setPreviousValue(webAlert.getCurrValue()); //LL: damit man den vorherigen Wert für Vergleiche heranziehen kann
+                    webAlert.setCurrentValue(webAlert.getCurrentValue());
                     saveToFile(webAlerts);
                     System.out.println("WebAlert ID " + id + " erfolgreich aktualisiert!");
                     return;
@@ -78,7 +79,7 @@ public class WebAlertManager {
                 System.out.println("Name: " + webAlert.getName());
                 System.out.println("URL: " + webAlert.getUrl());
                 System.out.println("CSS-Selector: " + webAlert.getCssSelector());
-                System.out.println("Original: " + webAlert.getOriginalValue());
+                System.out.println("Original: " + webAlert.getPreviousValue());
                 System.out.println("Aktuell: " + webAlert.getCurrentValue());
                 System.out.println("Erstellt am: " + webAlert.getStringCreatedAt());
             } catch (IOException e) {
@@ -127,8 +128,8 @@ public class WebAlertManager {
     public static boolean updatePrices() throws IOException {
         boolean newPriceFound = false;
         for(WebAlert alert : webAlerts){
-            if (!alert.getCurrentValue().equals(alert.getOriginalValue())){
-                alert.setOriginalValue(alert.getCurrentValue());
+            if (!alert.getCurrentValue().equals(alert.getPreviousValue())){
+                alert.setCurrentValue(alert.getCurrentValue());
                 newPriceFound = true;
             }
         }

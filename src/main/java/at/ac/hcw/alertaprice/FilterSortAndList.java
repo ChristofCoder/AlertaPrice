@@ -1,7 +1,7 @@
 package at.ac.hcw.alertaprice;
 
 import java.util.*;
-
+/*hinfällig, durch Java FX bereits möglich */
 import static at.ac.hcw.alertaprice.WebAlertManager.getWebAlerts;
 
 public class FilterSortAndList {
@@ -27,7 +27,7 @@ public class FilterSortAndList {
                             filtersort.sort(Collections.reverseOrder());
                             System.out.println(filtersort);*/
 
-            case 3:
+    /*        case 3:
                 filtersort.sort(Comparator.comparing(WebAlert::getCurrentValue)); //typecasten in int
                 System.out.println(filtersort);
                 break;
@@ -35,7 +35,7 @@ public class FilterSortAndList {
             case 4:
                 filtersort.sort(Comparator.comparing(WebAlert::getCurrentValue).reversed());
                 System.out.println(filtersort);
-                break;
+                break; */
 
             default:
                 throw new IllegalStateException("Unexpected value: " + filtermethod);

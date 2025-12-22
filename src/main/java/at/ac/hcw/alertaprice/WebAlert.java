@@ -6,14 +6,13 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.function.Function;
 
 public class WebAlert {
     private int id;
     private String name;
     private String url;
     private String cssSelector;
-    private String previousValue; //todo: methode schreiben, die den aktuellen wert aus dem json holt, bevor getcurrentvalue ausgeführt wird
+    private String previousValue; //LL: braucht man ggf für Vergleiche
     private String currentValue;
     private String stringCreatedAt;
 
@@ -30,6 +29,9 @@ public class WebAlert {
     public WebAlert() {
         // this empty constructor is needed for gson
     }
+
+
+
 
     public String getCurrentValue() throws IOException { // throws error if website connection is rejected
         Document doc = Jsoup.connect(url).get(); // loads website into doc
@@ -72,16 +74,32 @@ public class WebAlert {
         this.cssSelector = cssSelector;
     }
 
-    public String getOriginalValue() {
+    /*public String getOriginalValue() {
         return currentValue;
     }
 
     public void setOriginalValue(String originalValue) {
-        this.currentValue = originalValue;
-    }
+        this.previousValue = originalValue;
+    }*/
 
     public String getStringCreatedAt() {
         return stringCreatedAt;
+    }
+
+    public String getCurrValue() {
+        return currentValue;
+    }
+
+    public void setCurrentValue(String currentValue) {
+        this.currentValue = currentValue;
+    }
+
+    public String getPreviousValue() {
+        return previousValue;
+    }
+
+    public void setPreviousValue(String currValue) {
+        this.previousValue = currValue;
     }
 
     public void setStringCreatedAt(LocalDate createdAt) {
