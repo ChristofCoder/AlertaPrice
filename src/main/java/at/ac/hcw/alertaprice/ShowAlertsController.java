@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,29 +13,25 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
-
-import java.io.IOException;
-import java.io.Reader;
-import java.net.URL;
-import java.nio.file.Files;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ResourceBundle;
-
-import java.nio.file.Paths;
-import java.util.List;
-import java.lang.reflect.Type;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.io.Reader;
+import java.lang.reflect.Type;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class ShowAlertsController implements Initializable {
 
@@ -98,7 +96,9 @@ public class ShowAlertsController implements Initializable {
         originalValue.setCellValueFactory(new PropertyValueFactory<>("originalValue"));
 //        stringCreatedAt.setCellValueFactory(new PropertyValueFactory<>("createdAt"));
 
-
+        // Option B: automatically strip anything that is not a digit in ID fields
+        stripNonDigits(idTextField);
+        stripNonDigits(editAlertTextField);
 
         // 2. Load the data from JSON
         List<WebAlert> loadedItems = loadItemsFromJson(WebAlertManager.FILE_PATH);
@@ -108,6 +108,16 @@ public class ShowAlertsController implements Initializable {
 
         // 4. Bind the data to the TableView
         itemTable.setItems(data);
+    }
+
+    private void stripNonDigits(TextField field) {
+        field.textProperty().addListener((obs, oldV, newV) -> {
+            if (newV == null) return;
+            String digitsOnly = newV.replaceAll("\\D+", "");
+            if (!newV.equals(digitsOnly)) {
+                field.setText(digitsOnly);
+            }
+        });
     }
 
     public static List<WebAlert> loadItemsFromJson(String filePath) {
@@ -155,6 +165,7 @@ public class ShowAlertsController implements Initializable {
     public void goBack(ActionEvent event) throws IOException {
         go(event, NavState.getShowAlertsReturnFxml());
     }
+
     public void deleteAlert(ActionEvent event) throws IOException {
         int id = Integer.parseInt(idTextField.getText());
         WebAlertManager.deleteWebAlert(id);
@@ -261,14 +272,38 @@ public class ShowAlertsController implements Initializable {
     }
 
     public void switchToEditView(ActionEvent event) throws IOException {
+        String raw = editAlertTextField.getText();
+        if (raw == null || raw.isBlank()) {
+            outputLabel.setText("Please enter an ID to edit.");
+            return;
+        }
+
+        int editId;
+        try {
+            editId = Integer.parseInt(raw.trim());
+        } catch (NumberFormatException e) {
+            outputLabel.setText("Invalid ID (must be a number). ");
+            return;
+        }
+
+        // Optional sanity check: ensure the ID exists before navigating
+        List<WebAlert> loadedItems = loadItemsFromJson(WebAlertManager.FILE_PATH);
+        boolean exists = false;
+        for (WebAlert a : loadedItems) {
+            if (a.getId() == editId) {
+                exists = true;
+                break;
+            }
+        }
+        if (!exists) {
+            outputLabel.setText("No alert found with ID " + editId);
+            return;
+        }
+
         //Die eingegebene ID wird in der einen Instanz der Klasse ID_Saver gespeichert um im nächsten Fenster verfügbar zu sein.
-        int id = Integer.parseInt(editAlertTextField.getText());
-        ID_Saver.getInstance().setId(id);
+        ID_Saver.getInstance().setId(editId);
         System.out.println("ID_Saver Instanz erstellt: " + ID_Saver.getInstance().getId());
 
         go(event, "editAlertView.fxml");
     }
-
-
-
 }
