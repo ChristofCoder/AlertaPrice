@@ -14,19 +14,24 @@ import static jakarta.mail.Message.*;
 public class EmailAlert {
 
     protected Session mailsession; //Verbindung zum Mailserver
+    String receiverAddress = User.getInstance().getEmail();
 
-    public void login(String smtphost,String port, String mailuser, String password){
-        Properties prop = new Properties(); //Wertepaare zusammen bringen - Object key und Object value
-        prop.put("mail.smpt.host",smtphost); //speichert Wert zu Key
-        prop.put("mail.smtp.socketFactory.port",port);
-        prop.put("mail.smtp.socketFactrory.class","javax.net.ssl.SslSocketFactory");
-        prop.put("mail.smtp.auth","true");//Authentifizierung zwingend
-        prop.put("mail.smtp.port",port);
+    public EmailAlert(String mailUser, String appPassword) {
+        login(mailUser, appPassword);
+    }
+
+    private void login(String mailUser, String appPassword){
+
+        Properties prop = new Properties();
+        prop.put("mail.smtp.host", "smtp.office365.com");
+        prop.put("mail.smtp.port", "587");
+        prop.put("mail.smtp.auth", "true");
+        prop.put("mail.smtp.starttls.enable", "true");
 
         Authenticator auth = new Authenticator() {  //abstract!
-            @Override
+
             protected PasswordAuthentication getPasswordAuthentification(){
-             return new PasswordAuthentication(mailuser,password);
+             return new PasswordAuthentication(mailUser,appPassword);
             }
         };
         this.mailsession = Session.getDefaultInstance(prop,auth);
@@ -36,17 +41,20 @@ public class EmailAlert {
         if (mailsession == null){
             throw  new IllegalStateException("login required");
         }
+
+
+
         MimeMessage msg = new MimeMessage(mailsession);
         msg.addHeader("Content-type","text/HTML; charset = UTF-8");
         msg.addHeader("format","flowed");
         msg.addHeader("Content-Transfer-Encoding","8bit");
 
-        msg.setFrom(new InternetAddress(sendermail, sendername));
-        msg.setReplyTo(InternetAddress.parse(sendermail, false)); //rfc822 format wird NICHT erzwungen, da Strict = false
+        msg.setFrom(new InternetAddress("alertaprice@outlook.de", "AlertaPrice"));
         msg.setSubject(subject,"UTF-8");
         msg.setText(message,"UTF-8");
         msg.setSentDate(new Date());
-        msg.setRecipients(Message.RecipientType.TO,InternetAddress.parse(recieveraddresses,false));
+        //rfc822 format wird NICHT erzwungen, da Strict = false
+        msg.setRecipients(Message.RecipientType.TO,InternetAddress.parse(receiverAddress,false));
 
         Transport.send(msg);
 
