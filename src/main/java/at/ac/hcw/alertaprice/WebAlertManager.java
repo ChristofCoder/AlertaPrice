@@ -3,6 +3,7 @@ package at.ac.hcw.alertaprice;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import jakarta.mail.MessagingException;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -135,9 +136,28 @@ public class WebAlertManager {
     public static boolean updatePrices() throws IOException {
         boolean newPriceFound = false;
         for(WebAlert alert : webAlerts){
-            if (!alert.getCurrentPrice().equals(alert.getPreviousValue())){
+            if (!alert.getCurrentPrice().equals(alert.getCurrentValue())){
                 alert.setCurrentValue(alert.getCurrentPrice());
                 newPriceFound = true;
+
+                try {
+                    //hat sich was verändert? Sonst schick ich nix
+                    EmailAlert mail = new EmailAlert(
+                            "alertaprice@outlook.de",
+                            "bfyyqiotsdyrummo"
+                    );
+
+
+                    mail.send(
+                            "alertaprice@outlook.de",
+                            "AlertaPrice",
+                            User.getInstance().getEmail(),
+                            "Preisalarm!",
+                            "<h2>Preis hat sich verändert! 🎉</h2>"
+                    );
+                } catch (IOException | MessagingException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
         return newPriceFound;
