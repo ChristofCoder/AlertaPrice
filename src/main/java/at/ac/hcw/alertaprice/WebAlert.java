@@ -32,7 +32,6 @@ public class WebAlert {
 
 
 
-
     public String getCurrentValue() throws IOException { // throws error if website connection is rejected
         Document doc = Jsoup.connect(url).get(); // loads website into doc
         Elements elements = doc.select(cssSelector); // saves all searched elements
