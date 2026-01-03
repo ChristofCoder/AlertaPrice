@@ -7,7 +7,6 @@ import com.google.gson.reflect.TypeToken;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class WebAlertManager {
     private static ArrayList<WebAlert> webAlerts = new ArrayList<>();
@@ -41,8 +40,8 @@ public class WebAlertManager {
                     webAlert.setName(newName);
                     webAlert.setUrl(newUrl);
                     webAlert.setCssSelector(newCssSelector);
-                    webAlert.setPreviousValue(webAlert.getCurrValue()); //LL: damit man den vorherigen Wert für Vergleiche heranziehen kann
-                    webAlert.setCurrentValue(webAlert.getCurrentValue());
+                    webAlert.setPreviousValue(webAlert.getCurrentValue()); //LL: damit man den vorherigen Wert für Vergleiche heranziehen kann
+                    webAlert.setCurrentValue(webAlert.getCurrentPrice());
                     saveToFile(webAlerts);
                     System.out.println("WebAlert ID " + id + " erfolgreich aktualisiert!");
                     return;
@@ -80,7 +79,7 @@ public class WebAlertManager {
                 System.out.println("URL: " + webAlert.getUrl());
                 System.out.println("CSS-Selector: " + webAlert.getCssSelector());
                 System.out.println("Original: " + webAlert.getPreviousValue());
-                System.out.println("Aktuell: " + webAlert.getCurrentValue());
+                System.out.println("Aktuell: " + webAlert.getCurrentPrice());
                 System.out.println("Erstellt am: " + webAlert.getStringCreatedAt());
             } catch (IOException e) {
                 System.out.println("Fehler beim Abrufen!");
@@ -128,8 +127,8 @@ public class WebAlertManager {
     public static boolean updatePrices() throws IOException {
         boolean newPriceFound = false;
         for(WebAlert alert : webAlerts){
-            if (!alert.getCurrentValue().equals(alert.getPreviousValue())){
-                alert.setCurrentValue(alert.getCurrentValue());
+            if (!alert.getCurrentPrice().equals(alert.getPreviousValue())){
+                alert.setCurrentValue(alert.getCurrentPrice());
                 newPriceFound = true;
             }
         }

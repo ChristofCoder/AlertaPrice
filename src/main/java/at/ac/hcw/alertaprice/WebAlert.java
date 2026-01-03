@@ -22,7 +22,7 @@ public class WebAlert {
         this.url = url;
         this.cssSelector = cssSelector;
         this.previousValue = String.valueOf(0);
-        this.currentValue = getCurrentValue();
+        this.currentValue = getCurrentPrice();
         this.stringCreatedAt = LocalDate.now().toString();
     }
 
@@ -32,7 +32,7 @@ public class WebAlert {
 
 
 
-    public String getCurrentValue() throws IOException { // throws error if website connection is rejected
+    public String getCurrentPrice() throws IOException { // throws error if website connection is rejected
         Document doc = Jsoup.connect(url).get(); // loads website into doc
         Elements elements = doc.select(cssSelector); // saves all searched elements
 
@@ -85,7 +85,7 @@ public class WebAlert {
         return stringCreatedAt;
     }
 
-    public String getCurrValue() {
+    public String getCurrentValue() {
         return currentValue;
     }
 
