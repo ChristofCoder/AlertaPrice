@@ -3,7 +3,6 @@ package at.ac.hcw.alertaprice;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-
 import java.io.IOException;
 import java.time.LocalDate;
 

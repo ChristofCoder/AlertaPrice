@@ -63,14 +63,18 @@ public class WebAlertManager {
         nextId = 1;
     }
 
-    public static void deleteWebAlert(int id) {
-        for(int i = 0; i < webAlerts.size() ;i++) {
-            if(id == webAlerts.get(i).getId()) {
-                webAlerts.remove(i);
-                saveToFile(webAlerts);
-                break;
-            }
+    public static boolean deleteWebAlert(int id)
+    {
+        loadFromFile(); // WICHTIG: erst Datei -> webAlerts
+
+        boolean removed = webAlerts.removeIf(a -> a.getId() == id);
+
+        if (removed)
+        {
+            saveToFile(webAlerts); // schreibt wieder in webalerts.json
         }
+
+        return removed;
     }
 
     public static void showAllAlerts() {
