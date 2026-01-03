@@ -141,25 +141,27 @@ public class WebAlertManager {
                 alert.setCurrentValue(alert.getCurrentPrice());
                 newPriceFound = true;
 
-                try {
-                    //hat sich was verändert? Sonst schick ich nix
-                    EmailAlert mail = new EmailAlert(
-                            "alertaprice@outlook.de",
-                            "bfyyqiotsdyrummo"
-                    );
 
-
-                    mail.send(
-                            "alertaprice@outlook.de",
-                            "AlertaPrice",
-                            User.getInstance().getEmail(),
-                            "Preisalarm!",
-                            "<h2>Preis hat sich verändert! 🎉</h2>"
-                    );
-                } catch (IOException | MessagingException e) {
-                    throw new RuntimeException(e);
-                }
+//                try {
+//                    //hat sich was verändert? Sonst schick ich nix
+//                    EmailAlert mail = new EmailAlert(
+//                            "alertaprice@outlook.de",
+//                            "bfyyqiotsdyrummo"
+//                    );
+//
+//
+//                    mail.send(
+//                            "alertaprice@outlook.de",
+//                            "AlertaPrice",
+//                            User.getInstance().getEmail(),
+//                            "Preisalarm!",
+//                            "<h2>Preis hat sich verändert! 🎉</h2>"
+//                    );
+//                } catch (IOException | MessagingException e) {
+//                    throw new RuntimeException(e);
+//                }
             }
+            saveToFile(webAlerts);
         }
         return newPriceFound;
     }

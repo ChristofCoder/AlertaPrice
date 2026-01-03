@@ -10,8 +10,5 @@ public class Launcher {
     public static void main(String[] args) throws MessagingException, UnsupportedEncodingException {
         Application.launch(HelloApplication.class, args);
 
-
-
-
     }
 }

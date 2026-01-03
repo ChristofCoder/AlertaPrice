@@ -185,6 +185,15 @@ public class ShowAlertsController implements Initializable {
 
             if (WebAlertManager.updatePrices()){
                 outputLabel.setText(formattedTime + ": 1+ price(s) changed!");
+                // Re-Load the data from JSON
+                List<WebAlert> loadedItems = loadItemsFromJson(WebAlertManager.FILE_PATH);
+
+                // Convert List to ObservableList (required for JavaFX controls)
+                ObservableList<WebAlert> data = FXCollections.observableArrayList(loadedItems);
+
+                // Bind the data to the TableView
+                itemTable.setItems(data);
+
             }
             else outputLabel.setText(formattedTime + ": No price has changed!");
         } catch (IOException e) {
