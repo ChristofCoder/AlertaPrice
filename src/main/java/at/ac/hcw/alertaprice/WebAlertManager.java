@@ -155,7 +155,10 @@ public class WebAlertManager {
                             "AlertaPrice",
                             User.getInstance().getEmail(),
                             "Preisalarm!",
-                            alert.getName() + "Preis hat sich verändert! 🎉"
+                            "Preis hat sich verändert! 🎉" +
+                                    "<h2>\nProdukt: " + alert.getName() +
+                                    "\nAlter Preis: " + alert.getPreviousValue() +
+                                    "\nNeuer Preis: " + alert.getCurrentValue() + "</h2>"
                     );
                 } catch (IOException | MessagingException e) {
                     throw new RuntimeException(e);
