@@ -47,7 +47,7 @@ public class ShowAlertsController implements Initializable {
     @FXML private TableView<WebAlert> itemTable;
     @FXML private TableColumn<WebAlert, Integer>  id;
     @FXML private TableColumn<WebAlert, String> name;
-    @FXML private TableColumn<WebAlert, String> originalValue;
+    @FXML private TableColumn<WebAlert, String> currentValue;
 
     @FXML
     private TextField idTextField;
@@ -93,7 +93,7 @@ public class ShowAlertsController implements Initializable {
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
 //        columnUrl.setCellValueFactory(new PropertyValueFactory<>("url"));
 //        cssSelector.setCellValueFactory(new PropertyValueFactory<>("cssSelector"));
-        originalValue.setCellValueFactory(new PropertyValueFactory<>("originalValue"));
+        currentValue.setCellValueFactory(new PropertyValueFactory<>("currentValue"));
 //        stringCreatedAt.setCellValueFactory(new PropertyValueFactory<>("createdAt"));
 
         // Option B: automatically strip anything that is not a digit in ID fields
