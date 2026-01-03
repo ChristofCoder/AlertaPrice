@@ -1,11 +1,11 @@
 [
   {
     "id": 2,
-    "name": "thunfisch",
+    "name": "Thunfisch",
     "url": "https://shop.billa.at/produkte/vier-diamanten-thunfisch-naturell-00415575",
     "cssSelector": "div.ws-product-price-type__value",
-    "previousValue": "0",
-    "currentValue": "3,49 €",
+    "previousValue": "1,49 €",
+    "currentValue": "2,49 €",
     "stringCreatedAt": "2026-01-03"
   }
 ]

@@ -134,6 +134,7 @@ public class WebAlertManager {
     }
 
     public static boolean updatePrices() throws IOException {
+        loadFromFile(); // das ist damit wir die webalerts.json händisch manipulieren können ;-)
         boolean newPriceFound = false;
         for(WebAlert alert : webAlerts){
             if (!alert.getCurrentPrice().equals(alert.getCurrentValue())){
