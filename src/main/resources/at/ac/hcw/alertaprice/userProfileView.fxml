@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="at.ac.hcw.alertaprice.UserProfileController"
+            stylesheets="@styles.css">
+
+    <children>
+        <VBox spacing="16" alignment="TOP_CENTER"
+              AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+
+            <Region prefHeight="10" />
+
+            <Label text="User Profile" styleClass="ap-title">
+                <VBox.margin>
+                    <Insets top="0" right="0" bottom="14" left="0"/>
+                </VBox.margin>
+            </Label>
+
+            <GridPane hgap="12" vgap="12" maxWidth="520">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="NEVER" />
+                    <ColumnConstraints hgrow="ALWAYS" />
+                </columnConstraints>
+
+                <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="ap-field-label"/>
+                <TextField fx:id="nameTextField" maxWidth="1.7976931348623157E308"
+                           GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+                <Label text="E-Mail:" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="ap-field-label"/>
+                <TextField fx:id="emailTextField" maxWidth="1.7976931348623157E308"
+                           GridPane.rowIndex="1" GridPane.columnIndex="1" />
+            </GridPane>
+
+            <Label fx:id="statusLabel" maxWidth="520" wrapText="true" />
+
+            <HBox spacing="12" alignment="CENTER">
+                <Button text="Save" onAction="#saveProfile" styleClass="primary-btn" />
+                <Button text="Back" onAction="#back" styleClass="secondary-btn" />
+                <Button text="Delete Profile" onAction="#deleteProfile" styleClass="danger-btn" />
+            </HBox>
+
+            <Region VBox.vgrow="ALWAYS" />
+        </VBox>
+    </children>
+</AnchorPane>

@@ -1,0 +1,10 @@
+[
+  {
+    "id": 1,
+    "name": "Billa Joghurt",
+    "url": "https://shop.billa.at/produkte/clever-joghurt-natur-36-00668140",
+    "cssSelector": "div.ws-product-price-type__value",
+    "originalValue": "0,55 €",
+    "stringCreatedAt": "2026-01-03"
+  }
+]

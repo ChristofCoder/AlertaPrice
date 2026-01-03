@@ -4,41 +4,38 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.lang.reflect.Type;
 import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ResourceBundle;
-
-import java.nio.file.Paths;
 import java.util.List;
-import java.lang.reflect.Type;
+import java.util.ResourceBundle;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-
 public class ShowAlertsController implements Initializable {
 
     private Stage stage;
-    private Scene scene;
     private Parent root;
 
     @FXML
@@ -89,7 +86,7 @@ public class ShowAlertsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         String username = User.getInstance().getName();
-        myLabel.setText("Hey " + username);
+        myLabel.setText(username + "'s Alerts");
 
         // 1. Define how columns read data from the Item class
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -99,7 +96,9 @@ public class ShowAlertsController implements Initializable {
         originalValue.setCellValueFactory(new PropertyValueFactory<>("originalValue"));
 //        stringCreatedAt.setCellValueFactory(new PropertyValueFactory<>("createdAt"));
 
-
+        // Option B: automatically strip anything that is not a digit in ID fields
+        stripNonDigits(idTextField);
+        stripNonDigits(editAlertTextField);
 
         // 2. Load the data from JSON
         List<WebAlert> loadedItems = loadItemsFromJson(WebAlertManager.FILE_PATH);
@@ -109,6 +108,16 @@ public class ShowAlertsController implements Initializable {
 
         // 4. Bind the data to the TableView
         itemTable.setItems(data);
+    }
+
+    private void stripNonDigits(TextField field) {
+        field.textProperty().addListener((obs, oldV, newV) -> {
+            if (newV == null) return;
+            String digitsOnly = newV.replaceAll("\\D+", "");
+            if (!newV.equals(digitsOnly)) {
+                field.setText(digitsOnly);
+            }
+        });
     }
 
     public static List<WebAlert> loadItemsFromJson(String filePath) {
@@ -132,33 +141,35 @@ public class ShowAlertsController implements Initializable {
         }
     }
 
-    public void addAlert (ActionEvent event) throws IOException {
-        Stage stage;
-        Scene scene;
-        Parent root;
+    private void go(ActionEvent event, String fxml) throws IOException {
+        Parent content = FXMLLoader.load(getClass().getResource(fxml));
 
-        root = FXMLLoader.load(getClass().getResource("addFirstAlertView.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        // Wrap every view in the colorful frame so it stays consistent everywhere
+        BorderPane shell = new BorderPane(content);
+        shell.getStyleClass().add("app-shell");
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        // IMPORTANT: do NOT create a new Scene here; keep the existing Scene so CSS stays applied
+        stage.getScene().setRoot(shell);
     }
 
-    public void deleteAlert(ActionEvent event) throws IOException{
+    public void addAlert(ActionEvent event) throws IOException {
+        go(event, "addFirstAlertView.fxml");
+    }
 
-        Stage stage;
-        Scene scene;
-        Parent root;
+    public void openProfile(ActionEvent event) throws IOException {
+        NavState.setUserProfileReturnFxml("showAlertsView.fxml");
+        go(event, "userProfileView.fxml");
+    }
+    public void goBack(ActionEvent event) throws IOException {
+        go(event, NavState.getShowAlertsReturnFxml());
+    }
 
+    public void deleteAlert(ActionEvent event) throws IOException {
         int id = Integer.parseInt(idTextField.getText());
-
         WebAlertManager.deleteWebAlert(id);
-
-        root = FXMLLoader.load(getClass().getResource("showAlertsView.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        go(event, "showAlertsView.fxml");
     }
 
     public void updatePrices(ActionEvent event) throws IOException {
@@ -248,6 +259,8 @@ public class ShowAlertsController implements Initializable {
         alert.setTitle("Logout");
         alert.setHeaderText("All your Alerts will be saved!");
         alert.setContentText("See you next time!");
+        DialogUtil.style(alert);
+        DialogUtil.styleButtons(alert, ButtonType.OK, "danger-btn", ButtonType.CANCEL, "secondary-btn");
 
         if (alert.showAndWait().get() == ButtonType.OK){
 
@@ -258,25 +271,39 @@ public class ShowAlertsController implements Initializable {
         }
     }
 
-    public void switchToEditView(ActionEvent event) throws IOException{
-//Die eingegebene ID wird in der einen Instanz der Klasse ID_Saver gespeichert um im nächsten Fenster verfügbar zu sein.
-        int id = Integer.parseInt(editAlertTextField.getText());
-        ID_Saver.getInstance().setId(id);
+    public void switchToEditView(ActionEvent event) throws IOException {
+        String raw = editAlertTextField.getText();
+        if (raw == null || raw.isBlank()) {
+            outputLabel.setText("Please enter an ID to edit.");
+            return;
+        }
+
+        int editId;
+        try {
+            editId = Integer.parseInt(raw.trim());
+        } catch (NumberFormatException e) {
+            outputLabel.setText("Invalid ID (must be a number). ");
+            return;
+        }
+
+        // Optional sanity check: ensure the ID exists before navigating
+        List<WebAlert> loadedItems = loadItemsFromJson(WebAlertManager.FILE_PATH);
+        boolean exists = false;
+        for (WebAlert a : loadedItems) {
+            if (a.getId() == editId) {
+                exists = true;
+                break;
+            }
+        }
+        if (!exists) {
+            outputLabel.setText("No alert found with ID " + editId);
+            return;
+        }
+
+        //Die eingegebene ID wird in der einen Instanz der Klasse ID_Saver gespeichert um im nächsten Fenster verfügbar zu sein.
+        ID_Saver.getInstance().setId(editId);
         System.out.println("ID_Saver Instanz erstellt: " + ID_Saver.getInstance().getId());
 
-        Stage stage;
-        Scene scene;
-        Parent root;
-
-        root = FXMLLoader.load(getClass().getResource("editView.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        go(event, "editAlertView.fxml");
     }
-
-
-
 }
-
-

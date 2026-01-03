@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -33,7 +33,6 @@ public class SetupController {
     private Button clearButton;
 
     private Stage stage;
-    private Scene scene;
     private Parent root;
 
 
@@ -82,13 +81,19 @@ public class SetupController {
         }
 
 
-        User.getInstance().setName(name);
-        User.getInstance().setEmail(name);
+        User.setInstance(newUser);
+        System.out.println("SetupController: navigating to addFirstAlertView.fxml");
 
         root = FXMLLoader.load(getClass().getResource("addFirstAlertView.fxml"));
+
+        // Wrap every view in the colorful frame so it stays consistent everywhere
+        BorderPane shell = new BorderPane(root);
+        shell.getStyleClass().add("app-shell");
+
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
+
+        // IMPORTANT: keep the existing Scene so CSS stays applied
+        stage.getScene().setRoot(shell);
         stage.show();
     }
 
