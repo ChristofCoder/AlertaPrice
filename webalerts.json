@@ -1,10 +1,11 @@
 [
   {
     "id": 1,
-    "name": "Billa Joghurt",
-    "url": "https://shop.billa.at/produkte/clever-joghurt-natur-36-00668140",
-    "cssSelector": "div.ws-product-price-type__value",
-    "originalValue": "0,55 €",
-    "stringCreatedAt": "2026-01-03"
+    "name": "Lidl Heidelbeeren",
+    "url": "https://www.lidl.at/p/heidelbeeren/p10042534",
+    "cssSelector": "#\\31 3633360 \u003e div \u003e div \u003e nav \u003e ul \u003e div:nth-child(2) \u003e a",
+    "previousValue": "0",
+    "currentValue": "Nicht gefunden",
+    "stringCreatedAt": "2025-12-22"
   }
 ]

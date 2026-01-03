@@ -12,7 +12,8 @@ public class WebAlert {
     private String name;
     private String url;
     private String cssSelector;
-    private String originalValue;
+    private String previousValue; //LL: braucht man ggf für Vergleiche
+    private String currentValue;
     private String stringCreatedAt;
 
     public WebAlert(int id, String name, String url, String cssSelector) throws IOException { // throws error if website connection is rejected
@@ -20,13 +21,16 @@ public class WebAlert {
         this.name = name;
         this.url = url;
         this.cssSelector = cssSelector;
-        this.originalValue = getCurrentValue();
+        this.previousValue = String.valueOf(0);
+        this.currentValue = getCurrentValue();
         this.stringCreatedAt = LocalDate.now().toString();
     }
 
     public WebAlert() {
         // this empty constructor is needed for gson
     }
+
+
 
     public String getCurrentValue() throws IOException { // throws error if website connection is rejected
         Document doc = Jsoup.connect(url).get(); // loads website into doc
@@ -69,16 +73,32 @@ public class WebAlert {
         this.cssSelector = cssSelector;
     }
 
-    public String getOriginalValue() {
-        return originalValue;
+    /*public String getOriginalValue() {
+        return currentValue;
     }
 
     public void setOriginalValue(String originalValue) {
-        this.originalValue = originalValue;
-    }
+        this.previousValue = originalValue;
+    }*/
 
     public String getStringCreatedAt() {
         return stringCreatedAt;
+    }
+
+    public String getCurrValue() {
+        return currentValue;
+    }
+
+    public void setCurrentValue(String currentValue) {
+        this.currentValue = currentValue;
+    }
+
+    public String getPreviousValue() {
+        return previousValue;
+    }
+
+    public void setPreviousValue(String currValue) {
+        this.previousValue = currValue;
     }
 
     public void setStringCreatedAt(LocalDate createdAt) {
