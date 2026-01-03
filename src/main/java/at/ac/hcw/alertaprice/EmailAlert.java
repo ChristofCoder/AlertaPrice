@@ -28,9 +28,10 @@ public class EmailAlert {
         prop.put("mail.smtp.auth", "true");
         prop.put("mail.smtp.starttls.enable", "true");
 
-        Authenticator auth = new Authenticator() {  //abstract!
+        Authenticator auth;
+        auth = new Authenticator() {  //abstract!
 
-            protected PasswordAuthentication getPasswordAuthentification(){
+            protected PasswordAuthentication getPasswordAuthentication(){
              return new PasswordAuthentication(mailUser,appPassword);
             }
         };
