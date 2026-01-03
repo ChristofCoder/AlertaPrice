@@ -162,6 +162,8 @@ public class WebAlertManager {
 //                }
             }
             saveToFile(webAlerts);
+
+
         }
         return newPriceFound;
     }
