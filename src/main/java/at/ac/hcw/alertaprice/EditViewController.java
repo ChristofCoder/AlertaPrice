@@ -6,10 +6,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -44,34 +44,65 @@ public class EditViewController implements Initializable {
         String url = urlTextField.getText();
         String css = cssTextField.getText();
 
-        try {
-            WebAlertManager.updateWebAlert(id, name,url,css);
-            errorLabel.setText("Update successful");
-            Stage stage;
-            Scene scene;
-            Parent root;
-
-            root = FXMLLoader.load(getClass().getResource("showAlertsView.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            errorLabel.setText("Update failed" + e.getMessage());
+        // Basic validation
+        if (name == null || name.isBlank() || url == null || url.isBlank() || css == null || css.isBlank()) {
+            errorLabel.setText("OOPS! Some input was missing!");
+            return;
         }
 
+        try {
+            boolean ok = WebAlertManager.updateWebAlert(id, name, url, css);
+            if (!ok) {
+                errorLabel.setText("Update failed: ID not found or could not save.");
+                return;
+            }
 
+            errorLabel.setText("Update successful");
 
+            Parent content = FXMLLoader.load(getClass().getResource("showAlertsView.fxml"));
+
+            // Wrap the view so the colorful frame + CSS stay consistent
+            BorderPane shell = new BorderPane(content);
+            shell.getStyleClass().add("app-shell");
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.getScene().setRoot(shell); // keep the existing Scene (keeps styles.css)
+
+        } catch (Exception e) {
+            errorLabel.setText("Update failed: " + e.getMessage());
+        }
     }
     public void clearTextFields(ActionEvent event){
         nameTextField.setText("");
         urlTextField.setText("");
         cssTextField.setText("");
     }
+    public void back(ActionEvent event) {
+        try {
+            Parent content = FXMLLoader.load(getClass().getResource("showAlertsView.fxml"));
 
+            BorderPane shell = new BorderPane(content);
+            shell.getStyleClass().add("app-shell");
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.getScene().setRoot(shell); // keep same Scene (CSS stays)
+        } catch (Exception e) {
+            errorLabel.setText("Navigation failed: " + e.getMessage());
+        }
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         firstAlertLabel.setText("Edit ID: " + id);
+
+        WebAlert a = WebAlertManager.getWebAlertById(id);
+        if (a == null) {
+            errorLabel.setText("No alert found for ID " + id);
+            editButton.setDisable(true);
+            return;
+        }
+
+        nameTextField.setText(a.getName());
+        urlTextField.setText(a.getUrl());
+        cssTextField.setText(a.getCssSelector());
     }
 }

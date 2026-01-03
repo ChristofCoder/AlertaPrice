@@ -1,14 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="CONTROLLER_NAME"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css"
+            xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="at.ac.hcw.alertaprice.EditViewController">
+
+    <children>
+        <VBox spacing="14" alignment="TOP_CENTER"
+              AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+
+            <Region prefHeight="10" />
+
+            <Label fx:id="firstAlertLabel" alignment="CENTER" text="Label" wrapText="true" styleClass="ap-title">
+                <VBox.margin>
+                    <Insets top="0" right="0" bottom="14" left="0"/>
+                </VBox.margin>
+            </Label>
+
+            <Label alignment="CENTER" text="Edit Alert" styleClass="ap-subtitle"/>
+
+            <GridPane hgap="12" vgap="12" maxWidth="520">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="NEVER" />
+                    <ColumnConstraints hgrow="ALWAYS" />
+                </columnConstraints>
+
+                <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="ap-field-label"/>
+                <TextField fx:id="nameTextField" promptText="Product Title, Grocery Store" maxWidth="1.7976931348623157E308"
+                           GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+                <Label text="URL:" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="ap-field-label"/>
+                <TextField fx:id="urlTextField" promptText="https://www.shop.at/product.html" maxWidth="1.7976931348623157E308"
+                           GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+                <Label text="CSS Selector:" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="ap-field-label"/>
+                <TextField fx:id="cssTextField" promptText="div.example" maxWidth="1.7976931348623157E308"
+                           GridPane.rowIndex="2" GridPane.columnIndex="1" />
+            </GridPane>
+
+            <Label fx:id="errorLabel" maxWidth="520" wrapText="true" />
+
+            <HBox spacing="12" alignment="CENTER">
+                <HBox spacing="12" alignment="CENTER">
+                    <Button mnemonicParsing="false"
+                            onAction="#back"
+                            text="Back"
+                            styleClass="secondary-btn" />
+
+                    <Button fx:id="editButton" mnemonicParsing="false"
+                            onAction="#editAlert"
+                            text="Save"
+                            styleClass="primary-btn" />
+
+                    <Button fx:id="clearButton" mnemonicParsing="false"
+                            onAction="#clearTextFields"
+                            text="Clear"
+                            styleClass="secondary-btn" />
+                </HBox>
+            </HBox>
+
+            <Region VBox.vgrow="ALWAYS" />
+        </VBox>
+    </children>
 </AnchorPane>
+
