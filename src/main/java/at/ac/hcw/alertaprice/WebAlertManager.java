@@ -59,6 +59,7 @@ public class WebAlertManager {
     public static void deleteAllAlerts(){
         webAlerts.clear();
         saveToFile(webAlerts);
+        nextId = 1;
     }
 
     public static void deleteWebAlert(int id) {
