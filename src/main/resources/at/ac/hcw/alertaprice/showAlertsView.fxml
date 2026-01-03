@@ -1,39 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 
-<AnchorPane fx:id="showAlertsPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.hcw.alertaprice.ShowAlertsController">
-   <children>
-      <Label fx:id="myLabel" alignment="CENTER" layoutX="6.0" layoutY="5.0" prefHeight="17.0" prefWidth="592.0" text="Label">
-         <font>
-            <Font size="44.0" />
-         </font>
-      </Label>
-       <TableView fx:id="itemTable" layoutX="219.0" layoutY="180.0" prefHeight="200.0" prefWidth="349.0">
-           <columns>
-            <TableColumn fx:id="id" prefWidth="24.0" text="ID" />
-            <TableColumn fx:id="name" prefWidth="239.0" text="Name" />
-               <TableColumn fx:id="originalValue" prefWidth="85.0" text="Price (€)" />
-           </columns>
-       </TableView>
-      <Button fx:id="addAlertButton" layoutX="253.0" layoutY="96.0" mnemonicParsing="false" onAction="#addAlert" text="Add new Alert" />
-      <Button fx:id="deleteAlertsButton" layoutX="446.0" layoutY="96.0" mnemonicParsing="false" onAction="#deleteAlert" text="Delete Alert" />
-      <TextField fx:id="idTextField" layoutX="537.0" layoutY="96.0" onAction="#deleteAlert" prefHeight="26.0" prefWidth="43.0" promptText="ID" />
-      <Button fx:id="updateButton" layoutX="47.0" layoutY="96.0" mnemonicParsing="false" onAction="#updatePrices" text="Update Prices" />
-      <Label fx:id="outputLabel" layoutX="284.0" layoutY="153.0" prefHeight="26.0" prefWidth="315.0" textFill="#f50202" />
-      <Button fx:id="start" layoutX="39.0" layoutY="187.0" mnemonicParsing="false" onAction="#start" text="Start" />
-      <Label layoutX="27.0" layoutY="157.0" text="Start Auto-Update every" />
-      <TextField fx:id="inputTextfield" layoutX="173.0" layoutY="153.0" prefHeight="26.0" prefWidth="27.0" />
-      <Label layoutX="219.0" layoutY="157.0" text="seconds." />
-      <Button fx:id="stopButton" layoutX="120.0" layoutY="187.0" mnemonicParsing="false" onAction="#stopclick" text="Stop" />
-      <Button fx:id="editAlertButton" layoutX="446.0" layoutY="128.0" mnemonicParsing="false" onAction="#switchToEditView" prefHeight="26.0" prefWidth="81.0" text="Edit Alert" />
-      <TextField fx:id="editAlertTextField" layoutX="536.0" layoutY="129.0" prefHeight="26.0" prefWidth="43.0" promptText="ID" />
-      <Button fx:id="quitButton" layoutX="20.0" layoutY="354.0" mnemonicParsing="false" onAction="#quit" text="Quit" />
-   </children>
+<AnchorPane fx:id="showAlertsPane"
+            prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="at.ac.hcw.alertaprice.ShowAlertsController">
+
+    <children>
+        <BorderPane AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+                    AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <!-- TOP: Title -->
+            <top>
+                <Label fx:id="myLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" text="Label" styleClass="ap-title">
+                    <BorderPane.margin>
+                        <Insets top="0" right="0" bottom="14" left="0"/>
+                    </BorderPane.margin>
+                </Label>
+            </top>
+
+            <!-- LEFT: Controls -->
+            <left>
+                <VBox spacing="10" prefWidth="260" BorderPane.alignment="TOP_LEFT">
+                    <Button fx:id="updateButton" mnemonicParsing="false" onAction="#updatePrices" text="Update Prices" styleClass="primary-btn"/>
+
+                    <Label fx:id="outputLabel" textFill="#f50202" wrapText="true"/>
+
+                    <VBox spacing="6">
+                        <Label text="Start Auto-Update every" wrapText="true" styleClass="ap-field-label"/>
+                        <HBox spacing="6" alignment="CENTER_LEFT">
+                            <TextField fx:id="inputTextfield" prefWidth="60" minWidth="60" />
+                            <Label text="seconds." styleClass="ap-field-label"/>
+                        </HBox>
+                    </VBox>
+
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Button fx:id="start" mnemonicParsing="false" onAction="#start" text="Start" styleClass="secondary-btn"/>
+                        <Button fx:id="stopButton" mnemonicParsing="false" onAction="#stopclick" text="Stop" styleClass="danger-btn"/>
+                    </HBox>
+
+                    <!-- push bottom buttons down -->
+                    <Region VBox.vgrow="ALWAYS"/>
+
+                    <HBox spacing="10">
+                        <Button fx:id="quitButton" mnemonicParsing="false" onAction="#quit" text="Quit" styleClass="danger-btn"/>
+                        <Button fx:id="backButton" mnemonicParsing="false" onAction="#goBack" text="Back" styleClass="secondary-btn"/>
+                    </HBox>
+                </VBox>
+            </left>
+
+            <!-- CENTER: Toolbar + Table -->
+            <center>
+                <VBox spacing="10" BorderPane.alignment="CENTER">
+                    <!-- Add / Delete / Edit toolbar (aligned) -->
+                    <GridPane hgap="10" vgap="10">
+                        <columnConstraints>
+                            <!-- left action -->
+                            <ColumnConstraints hgrow="NEVER" />
+                            <!-- spacer column that grows -->
+                            <ColumnConstraints hgrow="ALWAYS" />
+                            <!-- right button -->
+                            <ColumnConstraints hgrow="NEVER" />
+                            <!-- right id field -->
+                            <ColumnConstraints hgrow="NEVER" />
+                        </columnConstraints>
+
+                        <!-- Row 0: Add (left) + Delete (right) -->
+                        <Button fx:id="addAlertButton" mnemonicParsing="false" onAction="#addAlert"
+                                text="Add new Alert" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="primary-btn" />
+
+                        <Region GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+                        <Button fx:id="deleteAlertsButton" mnemonicParsing="false" onAction="#deleteAlert"
+                                text="Delete Alert" prefWidth="110" minWidth="110" styleClass="danger-btn"
+                                GridPane.rowIndex="0" GridPane.columnIndex="2" />
+
+                        <TextField fx:id="idTextField" onAction="#deleteAlert" promptText="ID"
+                                   prefWidth="70" minWidth="70" maxWidth="70"
+                                   GridPane.rowIndex="0" GridPane.columnIndex="3" />
+
+                        <!-- Row 1: (blank left) + Edit (right) aligned with Delete -->
+                        <Region GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+                        <Button fx:id="editAlertButton" mnemonicParsing="false" onAction="#switchToEditView"
+                                text="Edit Alert" prefHeight="26.0" prefWidth="110" minWidth="110" styleClass="secondary-btn"
+                                GridPane.rowIndex="1" GridPane.columnIndex="2" />
+
+                        <TextField fx:id="editAlertTextField" prefHeight="26.0" promptText="ID"
+                                   prefWidth="70" minWidth="70" maxWidth="70"
+                                   GridPane.rowIndex="1" GridPane.columnIndex="3" />
+                    </GridPane>
+
+                    <!-- Table grows with window -->
+                    <TableView fx:id="itemTable" VBox.vgrow="ALWAYS" styleClass="ap-table">
+                        <columns>
+                            <TableColumn fx:id="id" prefWidth="50.0" text="ID"/>
+                            <TableColumn fx:id="name" prefWidth="280.0" text="Name"/>
+                            <TableColumn fx:id="originalValue" prefWidth="120.0" text="Price (€)"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </center>
+
+        </BorderPane>
+    </children>
 </AnchorPane>

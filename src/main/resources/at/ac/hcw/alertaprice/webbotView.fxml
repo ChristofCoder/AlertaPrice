@@ -1,38 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<SplitPane dividerPositions="0.25614250614250617" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.hcw.alertaprice.Controller">
-   <items>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0">
-         <children>
-            <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" layoutX="5.0" layoutY="261.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@shopping-bag.png" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-      <AnchorPane prefHeight="400.0" prefWidth="600.0">
-         <children>
-            <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="2.0" layoutY="59.0" prefHeight="17.0" prefWidth="600.0" text="Welcome to the AlertaPrice WebBot!">
-               <font>
-                  <Font size="23.0" />
-               </font>
-            </Label>
-            <Button fx:id="setupButton" alignment="CENTER" layoutX="230.0" layoutY="200.0" mnemonicParsing="false" onAction="#switchToSetupView" text="Set Up New Account" />
-            <Label fx:id="helloLabel" alignment="CENTER" layoutX="-6.0" layoutY="150.0" prefHeight="26.0" prefWidth="602.0" text="Please set up a new account!">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-   </items>
+<SplitPane dividerPositions="0.30457227138643067" styleClass="ap-split" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.hcw.alertaprice.Controller">
+    <items>
+        <!-- left Anchor -->
+        <AnchorPane prefWidth="200.0" styleClass="ap-split-item ap-split-left" stylesheets="@styles.css">
+            <children>
+                <VBox alignment="TOP_CENTER" spacing="18.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+                    <ImageView fx:id="logoImageView" fitHeight="162.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@alertalogo.png" />
+                        </image>
+                    </ImageView>
+
+                    <Button fx:id="myAlertsButton" mnemonicParsing="false" onAction="#switchToMyAlertsView" prefHeight="32.0" prefWidth="159.0" styleClass="secondary-btn" text="My Alerts" />
+
+                    <Button fx:id="profileMenuButton" mnemonicParsing="false" onAction="#switchToUserProfileView" prefHeight="32.0" prefWidth="159.0" styleClass="secondary-btn" text="User Profile" />
+
+                    <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logout" prefHeight="32.0" prefWidth="159.0" styleClass="secondary-btn" text="Log out" />
+
+                    <!-- Spacer to keep the bag image pinned to the bottom -->
+                    <Region VBox.vgrow="ALWAYS" />
+
+                    <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="168.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@bags.png" />
+                        </image>
+                    </ImageView>
+                </VBox>
+            </children>
+        </AnchorPane>
+
+        <!-- right Anchor -->
+        <AnchorPane prefWidth="600.0" styleClass="ap-split-item ap-split-right" stylesheets="@styles.css">
+            <children>
+                <VBox alignment="CENTER" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+                    <Label fx:id="welcomeLabel" alignment="CENTER" text="Welcome to the AlertaPrice WebBot!" wrapText="true" styleClass="ap-title" translateY="-150.0" />
+
+                    <Label fx:id="helloLabel" alignment="CENTER" text="Please set up a new account!" wrapText="true" styleClass="ap-subtitle" translateY="-34.0" />
+
+                    <Button fx:id="setupButton" alignment="CENTER" mnemonicParsing="false" onAction="#switchToSetupView" prefHeight="32.0" prefWidth="180.0" styleClass="primary-btn" text="Set Up New Account" translateY="-34.0" />
+                </VBox>
+            </children>
+        </AnchorPane>
+    </items>
 </SplitPane>

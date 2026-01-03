@@ -5,25 +5,58 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.hcw.alertaprice.AddFirstAlertController">
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css"
+            xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="at.ac.hcw.alertaprice.AddFirstAlertController">
    <children>
-      <Label alignment="CENTER" layoutX="1.0" layoutY="117.0" prefHeight="20.0" prefWidth="600.0" text="Add New Alert">
-         <font>
-            <Font size="16.0" />
-         </font></Label>
-      <Label fx:id="firstAlertLabel" alignment="CENTER" layoutX="1.0" layoutY="46.0" prefHeight="17.0" prefWidth="600.0" text="Label">
-         <font>
-            <Font size="37.0" />
-         </font></Label>
-      <Label layoutX="90.0" layoutY="175.0" text="Name:" />
-      <Label layoutX="90.0" layoutY="226.0" text="URL:" />
-      <Label layoutX="90.0" layoutY="269.0" text="CSS Selector:" />
-      <TextField fx:id="nameTextField" layoutX="174.0" layoutY="171.0" prefHeight="26.0" prefWidth="352.0" promptText="Produktname, Markt" />
-      <TextField fx:id="urlTextField" layoutX="174.0" layoutY="213.0" prefHeight="26.0" prefWidth="352.0" promptText="https://www.shop.at/product.html" />
-      <TextField fx:id="cssTextField" layoutX="174.0" layoutY="264.0" prefHeight="26.0" prefWidth="352.0" promptText="div.example" />
-      <Button fx:id="saveButton" layoutX="229.0" layoutY="332.0" mnemonicParsing="false" onAction="#saveAlert" text="Save" />
-      <Button fx:id="clearButton" layoutX="376.0" layoutY="332.0" mnemonicParsing="false" onAction="#clearTextFields" text="Clear" />
-      <Label fx:id="errorLabel" layoutX="21.0" layoutY="305.0" prefHeight="20.0" prefWidth="577.0" />
+      <VBox spacing="14" alignment="TOP_CENTER"
+            AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+            AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+
+         <Region prefHeight="10" />
+
+         <Label fx:id="firstAlertLabel" alignment="CENTER" text="Label" wrapText="true" styleClass="ap-title" />
+
+         <Label alignment="CENTER" text="Add New Alert" wrapText="true" styleClass="ap-subtitle" />
+
+         <GridPane hgap="12" vgap="12" maxWidth="520">
+            <columnConstraints>
+               <ColumnConstraints hgrow="NEVER" />
+               <ColumnConstraints hgrow="ALWAYS" />
+            </columnConstraints>
+
+            <Label text="Name:" styleClass="ap-field-label" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+            <TextField fx:id="nameTextField" promptText="Product Title, Grocery Store" maxWidth="1.7976931348623157E308"
+                       GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+            <Label text="URL:" styleClass="ap-field-label" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+            <TextField fx:id="urlTextField" promptText="https://www.shop.at/product.html" maxWidth="1.7976931348623157E308"
+                       GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+            <Label text="CSS Selector:" styleClass="ap-field-label" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+            <TextField fx:id="cssTextField" promptText="div.example" maxWidth="1.7976931348623157E308"
+                       GridPane.rowIndex="2" GridPane.columnIndex="1" />
+         </GridPane>
+
+         <Label fx:id="errorLabel" maxWidth="520" wrapText="true" />
+
+         <HBox spacing="12" alignment="CENTER">
+             <Button mnemonicParsing="false" onAction="#back"
+                     text="Back" styleClass="secondary-btn" />
+             <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveAlert"
+                     text="Save" styleClass="primary-btn" />
+             <Button fx:id="clearButton" mnemonicParsing="false" onAction="#clearTextFields"
+                     text="Clear" styleClass="secondary-btn" />
+         </HBox>
+
+         <Region VBox.vgrow="ALWAYS" />
+      </VBox>
    </children>
 </AnchorPane>

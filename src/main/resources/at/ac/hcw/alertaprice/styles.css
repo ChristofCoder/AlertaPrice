@@ -1,0 +1,195 @@
+.root {
+    -ap-orange: #fea32d;
+    -ap-pink:   #f3979d;
+    -ap-purple: #dc5acd;
+    -ap-blue:   #6997f4;
+
+    -fx-font-family: "Segoe UI";
+}
+
+/* Colorful frame shell (we will wrap every view in this) */
+.app-shell {
+    -fx-background-color:
+            linear-gradient(to bottom right, -ap-orange, -ap-purple, -ap-blue),
+            #f2e8dc;
+
+    -fx-background-insets: 0, 10;     /* frame thickness */
+    -fx-background-radius: 18, 10;
+    -fx-padding: 18;                   /* keeps content away from frame */
+}
+
+/* Nice inputs */
+.text-field, .password-field {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: rgba(0,0,0,0.15);
+    -fx-padding: 8 10 8 10;
+}
+
+/* Rounded button base */
+.button {
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+    -fx-font-weight: 700;
+    -fx-padding: 8 16 8 16;
+    -fx-cursor: hand;
+}
+
+/* Button “variants” you can apply */
+.primary-btn {
+    -fx-background-color: linear-gradient(to right, -ap-orange, -ap-purple);
+    -fx-text-fill: white;
+}
+.secondary-btn {
+    -fx-background-color: -ap-blue;
+    -fx-text-fill: white;
+}
+.danger-btn {
+    -fx-background-color: linear-gradient(to right, -ap-pink, -ap-purple);
+    -fx-text-fill: white;
+}
+
+/* ---- AlertaPrice TableView (alerts list) ---- */
+.ap-table {
+    -fx-background-color: white;
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+    -fx-border-color: rgba(0,0,0,0.14);
+    -fx-padding: 6;
+}
+
+/* Header gradient */
+.ap-table .column-header-background {
+    -fx-background-color: linear-gradient(to right, -ap-orange, -ap-purple);
+    -fx-background-radius: 12 12 0 0;
+    -fx-padding: 6;
+}
+.ap-table .column-header, .ap-table .filler {
+    -fx-background-color: transparent;
+}
+.ap-table .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: 700;
+}
+
+/* Rows */
+.ap-table .table-row-cell {
+    -fx-background-color: transparent;
+    -fx-cell-size: 34px;
+}
+.ap-table .table-row-cell:odd {
+    -fx-background-color: rgba(0,0,0,0.03);
+}
+.ap-table .table-row-cell:hover {
+    -fx-background-color: rgba(105,151,244,0.14); /* -ap-blue tint */
+}
+.ap-table .table-row-cell:selected {
+    -fx-background-color: rgba(220,90,205,0.18);  /* -ap-purple tint */
+}
+
+/* Cells */
+.ap-table .table-cell {
+    -fx-border-color: transparent;
+    -fx-padding: 0 10 0 10;
+}
+/* here perhaps ill comment the whole thing out if problems arise */
+ .ap-table .column-header-background .nested-column-header {
+    -fx-background-color: transparent;
+}
+
+/* Keep text readable (black) when a row is selected */
+.ap-table .table-row-cell:selected .table-cell {
+    -fx-text-fill: black;
+}
+.ap-table .table-row-cell:selected .text {
+    -fx-fill: black;
+}
+
+/* Also cover the focused-selected state */
+.ap-table .table-row-cell:selected:focused .table-cell {
+    -fx-text-fill: black;
+}
+.ap-table .table-row-cell:selected:focused .text {
+    -fx-fill: black;
+}
+
+/* webbotView SplitPane: keep backgrounds transparent, but add a subtle themed divider */
+.ap-split {
+    -fx-background-color: transparent;
+}
+
+.ap-split-item {
+    -fx-background-color: transparent;
+}
+
+/* Thin, elegant divider line that matches the orange→purple theme */
+.ap-split > .split-pane-divider {
+    /* clickable area */
+    -fx-padding: 0 3 0 3;
+
+    /* layer 1: transparent, layer 2: a softened theme gradient line */
+    -fx-background-color:
+            transparent,
+            linear-gradient(to bottom, derive(-ap-orange, 35%), derive(-ap-purple, 35%));
+
+    /* keep the gradient line thin */
+    -fx-background-insets: 0, 0 2 0 2;
+    -fx-background-radius: 10, 10;
+}
+
+/* On hover, slightly thicker so it reads as an intentional separator */
+.ap-split > .split-pane-divider:hover {
+    -fx-background-insets: 0, 0 1 0 1;
+}
+
+/* Subtle inner borders on panes (helps even if divider is hard to see) */
+.ap-split-left {
+    -fx-border-color: transparent rgba(0,0,0,0.10) transparent transparent;
+    -fx-border-width: 0 1 0 0;
+}
+
+.ap-split-right {
+    -fx-border-color: transparent transparent transparent rgba(0,0,0,0.10);
+    -fx-border-width: 0 0 0 1;
+}
+
+/* ---------- Themed Dialog / Alert ---------- */
+.dialog-pane.app-dialog {
+    -fx-background-color:
+            linear-gradient(to bottom right, -ap-orange, -ap-purple, -ap-blue),
+            #f2e8dc;
+    -fx-background-insets: 0, 10;
+    -fx-background-radius: 18, 10;
+    -fx-padding: 18;
+}
+
+.dialog-pane.app-dialog .header-panel {
+    -fx-background-color: transparent;
+}
+
+.dialog-pane.app-dialog .content.label {
+    -fx-text-fill: #2b2b2b;
+    -fx-font-size: 13px;
+}
+
+/* ---------- Consistent headings & labels ---------- */
+
+.ap-title {
+    -fx-font-size: 34px;
+    -fx-font-weight: 800;
+    /* same vibe as frame + primary button */
+    -fx-text-fill: linear-gradient(to right, -ap-orange, -ap-purple);
+}
+
+.ap-subtitle {
+    -fx-font-size: 16px;
+    -fx-font-weight: 700;
+    /* solid theme color (not white like button text) */
+    -fx-text-fill: derive(-ap-purple, -10%);
+}
+
+.ap-field-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-text-fill: derive(-ap-blue, -20%);
+}

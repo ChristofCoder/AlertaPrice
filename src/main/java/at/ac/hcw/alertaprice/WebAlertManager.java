@@ -33,9 +33,10 @@ public class WebAlertManager {
         }
     }
 
-    public static void updateWebAlert(int id, String newName, String newUrl, String newCssSelector) {
-        for (int i = 0; i < webAlerts.size(); i++) {
-            WebAlert webAlert = webAlerts.get(i);
+    public static boolean updateWebAlert(int id, String newName, String newUrl, String newCssSelector) {
+        loadFromFile(); // IMPORTANT
+
+        for (WebAlert webAlert : webAlerts) {
             if (webAlert.getId() == id) {
                 try {
                     webAlert.setName(newName);
@@ -45,19 +46,22 @@ public class WebAlertManager {
                     webAlert.setCurrentValue(webAlert.getCurrentValue());
                     saveToFile(webAlerts);
                     System.out.println("WebAlert ID " + id + " erfolgreich aktualisiert!");
-                    return;
+                    return true;
                 } catch (IOException e) {
                     System.out.println("Fehler beim Aktualisieren von WebAlert ID " + id + ": " + e.getMessage());
-                    return;
+                    return false;
                 }
             }
         }
+
         System.out.println("WebAlert mit ID " + id + " nicht gefunden!");
+        return false;
     }
 
     public static void deleteAllAlerts(){
         webAlerts.clear();
         saveToFile(webAlerts);
+        nextId = 1;
     }
 
     public static void deleteWebAlert(int id) {
@@ -136,7 +140,12 @@ public class WebAlertManager {
         return newPriceFound;
     }
 
-    public static ArrayList<WebAlert> getWebAlerts() {
-        return webAlerts;
+//we need here to ensure some data is pulled from the jason to be edited...it was empty previously
+    public static WebAlert getWebAlertById(int id) {
+        loadFromFile(); // make sure webAlerts is in sync with webalerts.json
+        for (WebAlert a : webAlerts) {
+            if (a.getId() == id) return a;
+        }
+        return null;
     }
 }
