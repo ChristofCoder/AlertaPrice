@@ -160,11 +160,14 @@ public class WebAlertManager {
                                     "\nAlter Preis: " + alert.getPreviousValue() +
                                     "\nNeuer Preis: " + alert.getCurrentValue() + "</h2>"
                     );
-                } catch (IOException | MessagingException e) {
-                    throw new RuntimeException(e);
-               }
+                } catch (Exception e) {
+                    System.err.println("Email failed, but price was updated: " + e.getMessage());
+                    // Don't throw RuntimeException here if you want the app to keep running
+                }
             }
-            saveToFile(webAlerts);
+            if (newPriceFound) {
+                saveToFile(webAlerts); // Save once at the end
+            }
         }
         return newPriceFound;
     }

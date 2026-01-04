@@ -28,6 +28,11 @@ public class EmailAlert {
         prop.put("mail.smtp.auth", "true");
         prop.put("mail.smtp.starttls.enable", "true");
 
+        prop.put("mail.smtp.starttls.required", "true");
+        prop.put("mail.smtp.ssl.protocols", "TLSv1.2");
+
+
+
         Authenticator auth;
         auth = new Authenticator() {  //abstract!
 
