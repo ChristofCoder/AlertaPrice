@@ -143,6 +143,8 @@ public class WebAlertManager {
 
 
                 try {
+                    PlaySound music = new PlaySound();
+                    music.playSound();
                     //hat sich was verändert? Sonst schick ich nix
                     EmailAlert mail = new EmailAlert(
                             "u4692215543@gmail.com",

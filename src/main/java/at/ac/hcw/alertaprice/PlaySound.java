@@ -15,7 +15,7 @@ public class PlaySound {
         sound = new File("Sound/Alert.wav");
     }
 
-    public void playSound(File sound){
+    public void playSound(){
         loadSound();
 
         try {
