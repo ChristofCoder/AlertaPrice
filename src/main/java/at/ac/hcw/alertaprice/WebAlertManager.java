@@ -136,6 +136,7 @@ public class WebAlertManager {
     public static boolean updatePrices() throws IOException {
         loadFromFile(); // das ist damit wir die webalerts.json händisch manipulieren können ;-)
         boolean newPriceFound = false;
+        PlaySound music = new PlaySound();
         for(WebAlert alert : webAlerts){
             if (!alert.getCurrentPrice().equals(alert.getCurrentValue())){
                 alert.setCurrentValue(alert.getCurrentPrice());
@@ -143,8 +144,8 @@ public class WebAlertManager {
 
 
                 try {
-                    PlaySound music = new PlaySound();
-                    music.playSound();
+
+                    music.playSound("Sound/Alert.wav");
                     //hat sich was verändert? Sonst schick ich nix
                     EmailAlert mail = new EmailAlert(
                             "u4692215543@gmail.com",
@@ -166,6 +167,9 @@ public class WebAlertManager {
                     System.err.println("Email failed, but price was updated: " + e.getMessage());
                     // Don't throw RuntimeException here if you want the app to keep running
                 }
+            }
+            else {
+                music.playSound("Sound/negative-alert.wav");
             }
             if (newPriceFound) {
                 saveToFile(webAlerts); // Save once at the end

@@ -11,12 +11,12 @@ public class PlaySound {
     Clip clip; //braucht man in playSound zum Abspielen -> Audio-Abspielobjekt
 
 
-    public void loadSound(){
-        sound = new File("Sound/Alert.wav");
+    public void loadSound(String path){
+        sound = new File(path);
     }
 
-    public void playSound(){
-        loadSound();
+    public void playSound(String path){
+        loadSound(path);
 
         try {
             clip = AudioSystem.getClip();
