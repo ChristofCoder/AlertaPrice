@@ -7,8 +7,8 @@ import java.io.File;
 // inspired by https://www.youtube.com/watch?v=-GhCdekgNNM
 
 public class PlaySound {
-    public static File sound;
-    Clip clip; //braucht man in playSound zum Abspielen
+    public static File sound; //Verweis, enthält selber keinen Ton
+    Clip clip; //braucht man in playSound zum Abspielen -> Audio-Abspielobjekt
 
 
     public void loadSound(){
