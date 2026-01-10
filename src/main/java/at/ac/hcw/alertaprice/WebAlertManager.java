@@ -9,8 +9,6 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-import static at.ac.hcw.alertaprice.PlaySound.sound;
-
 public class WebAlertManager {
     private static ArrayList<WebAlert> webAlerts = new ArrayList<>();
     private static int nextId = 1; // Class variable for automatic id distribution
@@ -19,7 +17,6 @@ public class WebAlertManager {
             .setPrettyPrinting()
 //            .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())  // NEU!
             .create();
-
 
     public static void createWebAlert(String name, String url, String cssSelector) {
         try {
@@ -61,18 +58,20 @@ public class WebAlertManager {
         return false;
     }
 
-    public static void deleteAllAlerts() {
+    public static void deleteAllAlerts(){
         webAlerts.clear();
         saveToFile(webAlerts);
         nextId = 1;
     }
 
-    public static boolean deleteWebAlert(int id) {
+    public static boolean deleteWebAlert(int id)
+    {
         loadFromFile(); // WICHTIG: erst Datei -> webAlerts
 
         boolean removed = webAlerts.removeIf(a -> a.getId() == id);
 
-        if (removed) {
+        if (removed)
+        {
             saveToFile(webAlerts); // schreibt wieder in webalerts.json
         }
 
@@ -81,7 +80,7 @@ public class WebAlertManager {
 
     public static void showAllAlerts() {
         System.out.println("Gespeicherte WebAlerts:");
-        for (int i = 0; i < webAlerts.size(); i++) {
+        for(int i = 0; i < webAlerts.size() ;i++) {
             WebAlert webAlert = webAlerts.get(i);
             try {
                 System.out.println("ID: " + webAlert.getId());
@@ -106,8 +105,7 @@ public class WebAlertManager {
         }
 
         try (Reader reader = new FileReader(file)) {
-            Type listType = new TypeToken<ArrayList<WebAlert>>() {
-            }.getType();
+            Type listType = new TypeToken<ArrayList<WebAlert>>(){}.getType();
             webAlerts = GSON.fromJson(reader, listType);
 
             if (webAlerts == null) {
@@ -138,15 +136,13 @@ public class WebAlertManager {
     public static boolean updatePrices() throws IOException {
         loadFromFile(); // das ist damit wir die webalerts.json händisch manipulieren können ;-)
         boolean newPriceFound = false;
-        for (WebAlert alert : webAlerts) {
-            if (!alert.getCurrentPrice().equals(alert.getCurrentValue())) {
+        for(WebAlert alert : webAlerts){
+            if (!alert.getCurrentPrice().equals(alert.getCurrentValue())){
                 alert.setCurrentValue(alert.getCurrentPrice());
                 newPriceFound = true;
 
 
                 try {
-                    PlaySound music = new PlaySound();
-                    music.playSound(sound);
                     //hat sich was verändert? Sonst schick ich nix
                     EmailAlert mail = new EmailAlert(
                             "u4692215543@gmail.com",
@@ -164,16 +160,19 @@ public class WebAlertManager {
                                     "\nAlter Preis: " + alert.getPreviousValue() +
                                     "\nNeuer Preis: " + alert.getCurrentValue() + "</h2>"
                     );
-                } catch (IOException | MessagingException e) {
-                    throw new RuntimeException(e);
+                } catch (Exception e) {
+                    System.err.println("Email failed, but price was updated: " + e.getMessage());
+                    // Don't throw RuntimeException here if you want the app to keep running
                 }
             }
-            saveToFile(webAlerts);
+            if (newPriceFound) {
+                saveToFile(webAlerts); // Save once at the end
+            }
         }
         return newPriceFound;
     }
 
-    //we need here to ensure some data is pulled from the jason to be edited...it was empty previously
+//we need here to ensure some data is pulled from the jason to be edited...it was empty previously
     public static WebAlert getWebAlertById(int id) {
         loadFromFile(); // make sure webAlerts is in sync with webalerts.json
         for (WebAlert a : webAlerts) {
