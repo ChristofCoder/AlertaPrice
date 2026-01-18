@@ -29,8 +29,6 @@ public class WebAlert {
         // this empty constructor is needed for gson
     }
 
-
-
     public String getCurrentPrice() throws IOException { // throws error if website connection is rejected
         Document doc = Jsoup.connect(url).get(); // loads website into doc
         Elements elements = doc.select(cssSelector); // saves all searched elements
@@ -71,14 +69,6 @@ public class WebAlert {
     public void setCssSelector(String cssSelector) {
         this.cssSelector = cssSelector;
     }
-
-    /*public String getOriginalValue() {
-        return currentValue;
-    }
-
-    public void setOriginalValue(String originalValue) {
-        this.previousValue = originalValue;
-    }*/
 
     public String getStringCreatedAt() {
         return stringCreatedAt;

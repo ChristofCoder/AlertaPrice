@@ -3,7 +3,6 @@ package at.ac.hcw.alertaprice;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import jakarta.mail.MessagingException;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -15,12 +14,11 @@ public class WebAlertManager {
     static final String FILE_PATH = "webalerts.json";
     private static final Gson GSON = new GsonBuilder()
             .setPrettyPrinting()
-//            .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())  // NEU!
             .create();
 
     public static void createWebAlert(String name, String url, String cssSelector) {
         try {
-            loadFromFile(); //das ist wichtig! Es lädt die bestehende webalerts.json file und setzt nextId auf den richtigen Wert
+            loadFromFile(); //Wichtig! Lädt die bestehende webalerts.json file und setzt nextId auf den richtigen Wert
 
             WebAlert webAlert = new WebAlert(nextId, name, url, cssSelector);
             webAlerts.add(webAlert);
@@ -34,7 +32,7 @@ public class WebAlertManager {
     }
 
     public static boolean updateWebAlert(int id, String newName, String newUrl, String newCssSelector) {
-        loadFromFile(); // IMPORTANT
+        loadFromFile(); //Wichtig! Lädt die bestehende webalerts.json file und setzt nextId auf den richtigen Wert
 
         for (WebAlert webAlert : webAlerts) {
             if (webAlert.getId() == id) {
@@ -144,7 +142,6 @@ public class WebAlertManager {
 
 
                 try {
-
                     music.playSound("Sound/Alert.wav");
                     //hat sich was verändert? Sonst schick ich nix
                     EmailAlert mail = new EmailAlert(
