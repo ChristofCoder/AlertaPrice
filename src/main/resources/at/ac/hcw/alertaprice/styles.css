@@ -175,7 +175,7 @@
 /* ---------- Consistent headings & labels ---------- */
 
 .ap-title {
-    -fx-font-size: 34px;
+    -fx-font-size: 30px;
     -fx-font-weight: 800;
     /* same vibe as frame + primary button */
     -fx-text-fill: linear-gradient(to right, -ap-orange, -ap-purple);
