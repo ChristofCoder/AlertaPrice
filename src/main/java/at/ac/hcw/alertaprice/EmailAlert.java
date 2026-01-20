@@ -29,6 +29,7 @@ public class EmailAlert {
         prop.put("mail.smtp.starttls.enable", "true");
 
         prop.put("mail.smtp.starttls.required", "true");
+
         prop.put("mail.smtp.ssl.protocols", "TLSv1.2");
 
 
@@ -55,7 +56,7 @@ public class EmailAlert {
         msg.addHeader("format","flowed");
         msg.addHeader("Content-Transfer-Encoding","8bit");
 
-        msg.setFrom(new InternetAddress("u4692215543@gmail.com", "AlertaPrice"));
+        msg.setFrom(new InternetAddress("cultourist2000@gmail.com", "AlertaPrice"));
         msg.setSubject(subject,"UTF-8");
         msg.setText(message,"UTF-8");
         msg.setSentDate(new Date());

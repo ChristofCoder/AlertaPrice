@@ -145,13 +145,13 @@ public class WebAlertManager {
                     music.playSound("Sound/Alert.wav");
                     //hat sich was verändert? Sonst schick ich nix
                     EmailAlert mail = new EmailAlert(
-                            "u4692215543@gmail.com",
-                            "vdjg yrhv brnj dkjk"
+                            "cultourist2000@gmail.com",
+                            "vosn suau comu daaj"
                     );
 
 
                     mail.send(
-                            "u4692215543@gmail.com",
+                            "cultourist2000@gmail.com",
                             "AlertaPrice",
                             User.getInstance().getEmail(),
                             "Preisalarm!",
